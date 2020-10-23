@@ -35,6 +35,8 @@ class Models{
        
        event.preventDefault();
 
+       $("#btnLoginEmailSenha").html("Carregando...");
+
        var loginUsuario = $("#loginUsuario").val();
        var loginSenha = $("#loginSenha").val();
 
@@ -50,6 +52,8 @@ class Models{
 
                   console.log("%c RETORNO DO LOGIN","background:#ff0000;color:#fff;");
                   console.log(dados);
+
+                  $("#btnLoginEmailSenha").html("Login");
 
                   var dadosUsuario = JSON.stringify(dados);
                   
@@ -83,6 +87,8 @@ class Models{
        
        event.preventDefault();
 
+       $("#btnViewLogin").html("Carregando...");
+
        var loginUsuario = $("#loginUsuario").val();
 
 	          // INICIO CHAMADA AJAX
@@ -93,7 +99,9 @@ class Models{
                   data:{token:app.token,tokenSms:app.tokenSms,loginUsuario:loginUsuario}
               
               })
-              request.done(function (dados) {            
+              request.done(function (dados) {          
+
+                  $("#btnViewLogin").html("Próximo");  
 
                   console.log("%c RETORNO DO LOGIN","background:#ff0000;color:#fff;");
                   console.log(dados);
@@ -139,6 +147,8 @@ class Models{
 
       event.preventDefault();
 
+      $("#btnConfirmarCodigo").html("Processando...");
+
        var codigoSms = $("#codigoSms").val();
 
               // INICIO CHAMADA AJAX
@@ -155,6 +165,8 @@ class Models{
                   console.log(dados);
 
                   var dadosUsuario = JSON.stringify(dados);
+
+                  $("#btnConfirmarCodigo").html("Confirmar código");
                   
                   if(dados.sucesso=="200"){
                      
@@ -185,6 +197,8 @@ class Models{
     procCadastro(){
 
       event.preventDefault();
+
+      $("#btnViewCadastro").html("Carregando...");
        
       var cadastroNome = $("#cadastroNome").val();
       var cadastroEmail = $("#cadastroEmail").val();
@@ -203,6 +217,8 @@ class Models{
 
                   console.log("%c RETORNO DO CADASTRO","background:#ff0000;color:#fff;");
                   console.log(dados);
+
+                  $("#btnViewCadastro").html("Cadastrar");
 
                   var dadosUsuario = JSON.stringify(dados);
                   
@@ -235,6 +251,8 @@ class Models{
     procResetSenha(){
 
               event.preventDefault();
+
+              $("#btnViewResetarSenha").html("Processando...");
                
               var resetEmail = $("#resetEmail").val();
 
@@ -250,6 +268,8 @@ class Models{
 
                   console.log("%c RETORNO DO RESET","background:#ff0000;color:#fff;");
                   console.log(dados);
+
+                  $("#btnViewResetarSenha").html("Resetar senha");
 
                   var dadosUsuario = JSON.stringify(dados);
                   

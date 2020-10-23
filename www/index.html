@@ -94,7 +94,7 @@ ysyss
           <!-- LOGO -->
           <!-- MENU BAR -->
           <div class="col-3 menu-bar-toggle">
-             <a href="#" title="Abrir o menu">
+             <a href="javascript:void(0)" onclick="app.abrirFecharMenuCliente();" title="Abrir o menu">
                <img src="assets/images/menu-bar.svg" alt="Abrir o menu">
              </a>
           </div>
@@ -115,7 +115,7 @@ ysyss
     <footer>
         <div class="row">
             <div class="col menu-1">
-                <a href="javascript:void(0)" title="view 1" onclick="app.inicio()">
+                <a href="javascript:void(0)" title="view 1" onclick="app.viewPrincipalProfissional()">
                     <img src="assets/images/home.svg" alt="Home" />
                     Home
                 </a>
@@ -177,6 +177,130 @@ ysyss
       </form>
     </div>
     <!-- INPUT FLUTUANTE -->
+
+    
+
+
+    <!-- MENU ADICIONAL CLIENTE -->
+        <div class="menu-adicional-cliente">
+          
+              <!-- FECHAR MENU LOJA -->
+              <div class="fechar-menu-cliente">
+                <a href="javascript:void(0)" title="Fechar menu" onclick="app.abrirFecharMenuCliente();">
+                   <img src="assets/images/fechar.svg" alt="Fechar menu">
+                </a>
+              </div>
+              <!-- FECHAR MENU LOJA -->
+              
+              <!-- NAVEGAÇÃO PRINCIPAL -->
+              <nav>
+                <ul>
+                  
+                  <li>
+                      <a href="javascript:void(0)" title="Meu Perfil">
+                        Meu Perfil
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Configurações">
+                        Configurações
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Dúvidas e suporte">
+                        Dúvidas e suporte
+                      </a>
+                  </li>
+
+
+                  <li>
+                      <a href="javascript:void(0)" title="Trocar tipo de Perfil" onclick="app.abrirFecharMenuCliente(); app.inicio();">
+                        Trocar tipo de Perfil
+                      </a>
+                  </li>
+
+                  <li>
+                    <a href="javascript:void(0)" onclick="app.abrirFecharMenuCliente(); confirmacao('Tem certeza que deseja sair?','Você será deslogado','app.logoff()','Sair')" title="Sair">
+                    Sair</a>
+                  </li>
+
+                </ul>
+              </nav>
+              <!-- NAVEGAÇÃO PRINCIPAL -->
+
+        </div>
+        <!-- MENU ADICIONAL CLIENTE -->
+
+
+
+        <!-- MENU ADICIONAL PROFISSIONAL -->
+        <div class="menu-adicional-profissional">
+          
+              <!-- FECHAR MENU LOJA -->
+              <div class="fechar-menu-profissional">
+                <a href="javascript:void(0)" title="Fechar menu" onclick="app.abrirFecharMenuProfissional();">
+                   <img src="assets/images/fechar.svg" alt="Fechar menu">
+                </a>
+              </div>
+              <!-- FECHAR MENU LOJA -->
+              
+              <!-- NAVEGAÇÃO PRINCIPAL -->
+              <nav>
+                <ul>
+                  
+                  <li>
+                      <a href="javascript:void(0)" title="Meu Perfil">
+                        Meu Perfil
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Meus Serviços">
+                        Meus Serviços
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Cursos & Treinamentos">
+                        Cursos & Treinamentos
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Comprar Chaves">
+                        Comprar Chaves
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Indique e ganhe">
+                        Indique e ganhe
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Configurações">
+                        Configurações
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Dúvidas e suporte">
+                        Dúvidas e suporte
+                      </a>
+                  </li>
+                  <li>
+                      <a href="javascript:void(0)" title="Trocar tipo de Perfil" onclick="app.abrirFecharMenuProfissional(); app.inicio();">
+                        Trocar tipo de Perfil
+                      </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" onclick="app.abrirFecharMenuProfissional(); confirmacao('Tem certeza que deseja sair?','Você será deslogado','app.logoff()','Sair')" title="Sair">
+                    Sair</a>
+                  </li>
+
+                </ul>
+              </nav>
+              <!-- NAVEGAÇÃO PRINCIPAL -->
+
+        </div>
+        <!-- MENU ADICIONAL PROFISSIONAL -->
+
+
 
 
     <script type="text/javascript" src="assets/js/jquery-3.4.1.min.js"></script>

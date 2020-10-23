@@ -16,9 +16,69 @@ class Views{
 
 	animarTransicao(){
 		new WOW().init();
-	}
-  
+	}  
+
     viewPrincipal(){
+
+            this._content.html(`
+            
+               <div class="row view-inicial inicial" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                      Qual tipo de perfil você deseja acessar?
+                     </h2>
+
+                     <form method="post" action="javascript:void(0)" onsubmit="app.selecaoPerfil(event)">
+
+                           <div class="form-check">
+                              <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoCliente" value="cliente" checked>
+                              <label class="form-check-label" for="tipoServicoCliente">
+                                <img src="assets/images/profile.svg" alt="Encontrar profissionais" /> Encontrar profissionais
+                              </label>
+                           </div>
+
+                           <div class="form-check">
+                              <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoPro" value="profissionais">
+                              <label class="form-check-label" for="tipoServicoPro">
+                                <img src="assets/images/simbolo.svg" alt="Encontrar profissionais" />  Cadastrar meus serviços
+                              </label>
+                           </div>
+                           
+                           <div class="form-group">
+                              <button typw="submit" class="btn btn-primary">
+                                  Escolher esse perfil
+                              </button> 
+                           </div>
+
+                     </form>
+
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+            //$("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+            //$("header .menu-bar-toggle").fadeIn(500);
+
+            $("footer").fadeOut();
+        
+    }
+
+
+  
+    viewPrincipalCliente(){
+
+            $("header .menu-bar-toggle").html(`
+                 
+                 <a href="javascript:void(0)" onclick="app.abrirFecharMenuCliente();" title="Abrir o menu">
+                   <img src="assets/images/menu-bar.svg" alt="Abrir o menu">
+                 </a>
+
+            `);
 
             this._content.html(`
             
@@ -88,7 +148,216 @@ class Views{
 
             this.animarTransicao();
 
-            //$("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+            $("footer").fadeOut(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+            $("header .menu-bar-toggle").fadeIn(500);
+        
+    }
+
+
+
+    viewPrincipalProfissional(){
+
+            $("header .menu-bar-toggle").html(`
+
+                 <a class="saldo-atual" href="javascript:void(0)" title="Seu saldo">
+                    
+                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> 198
+
+                 </a>
+                 
+                 <a href="javascript:void(0)" onclick="app.abrirFecharMenuProfissional();" title="Abrir o menu">
+                   <img src="assets/images/menu-bar.svg" alt="Abrir o menu">
+                 </a>
+
+            `);
+
+            this._content.html(`
+            
+               <div class="row view-dashboard view-profissional" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                       Olá novamente,<br>Diogenes<br>
+                       <small>Novos orçamentos da rede <br>SERVICE KEYS:</small>
+                     </h2>
+
+                     <div class="loop-novos-servicos">
+                         
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+                         <div class="caixa-destaque-servicos">
+                           
+                             <div class="header-autor">
+
+                                 <h3>
+                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
+                                    Diogenes Junior
+                                    <small>
+                                       <p>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                       </p>
+                                       Brasileiro, 30 anos - Osasco SP
+                                    </small>
+                                 </h3>
+
+                             </div>
+
+                             <br clear="both">
+
+                             <div class="body-autor">
+                                  <h4>Nome do serviço solicitado.</h4>
+                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
+                                  <p><b>São Paulo - 5.5Km</b></p>
+                             </div>
+
+                             <div class="footer-autor">
+                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
+                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
+                                  </a>
+                             </div>
+
+                         </div>
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+                         <div class="caixa-destaque-servicos">
+                           
+                             <div class="header-autor">
+
+                                 <h3>
+                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
+                                    Diogenes Junior
+                                    <small>
+                                       <p>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                       </p>
+                                       Brasileiro, 30 anos - Osasco SP
+                                    </small>
+                                 </h3>
+
+                             </div>
+
+                             <br clear="both">
+
+                             <div class="body-autor">
+                                  <h4>Nome do serviço solicitado.</h4>
+                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
+                                  <p><b>São Paulo - 5.5Km</b></p>
+                             </div>
+
+                             <div class="footer-autor">
+                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
+                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
+                                  </a>
+                             </div>
+
+                         </div>
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+
+
+
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+                         <div class="caixa-destaque-servicos">
+                           
+                             <div class="header-autor">
+
+                                 <h3>
+                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
+                                    Diogenes Junior
+                                    <small>
+                                       <p>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                       </p>
+                                       Brasileiro, 30 anos - Osasco SP
+                                    </small>
+                                 </h3>
+
+                             </div>
+
+                             <br clear="both">
+
+                             <div class="body-autor">
+                                  <h4>Nome do serviço solicitado.</h4>
+                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
+                                  <p><b>São Paulo - 5.5Km</b></p>
+                             </div>
+
+                             <div class="footer-autor">
+                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
+                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
+                                  </a>
+                             </div>
+
+                         </div>
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+
+
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+                         <div class="caixa-destaque-servicos">
+                           
+                             <div class="header-autor">
+
+                                 <h3>
+                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
+                                    Diogenes Junior
+                                    <small>
+                                       <p>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                       </p>
+                                       Brasileiro, 30 anos - Osasco SP
+                                    </small>
+                                 </h3>
+
+                             </div>
+
+                             <br clear="both">
+
+                             <div class="body-autor">
+                                  <h4>Nome do serviço solicitado.</h4>
+                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
+                                  <p><b>São Paulo - 5.5Km</b></p>
+                             </div>
+
+                             <div class="footer-autor">
+                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
+                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
+                                  </a>
+                             </div>
+
+                         </div>
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+
+
+
+                     </div>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+            $("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
             $("header .menu-bar-toggle").fadeIn(500);
         
     }

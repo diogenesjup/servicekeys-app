@@ -127,6 +127,77 @@ class App {
         this.models.procResetSenha();
     }
 
+    
+
+    selecaoPerfil(){
+
+        event.preventDefault();
+
+        var tipoPerfil = $('input[name=tipoPerfil]:checked').val();
+
+        if(tipoPerfil=="cliente"){
+
+            this.views.viewPrincipalCliente();
+
+        }else{
+
+            this.views.viewPrincipalProfissional();
+
+        }
+
+    }
+
+    viewPrincipalProfissional(){
+      
+      this.views.viewPrincipalProfissional();
+
+    }
+
+    desbloqAnuncio(){
+       
+        confirmacao("Oops! Você não tem chaves suficiêntes","Quer enviar um orçamento para esse cliente? Compre agora um pacote de chaves para desbloquear essa e muitos outros anúncios!","app.comprarChaves()","Comprar");
+
+    }
+
+    comprarChaves(){
+       
+
+
+    }
+
+    /* ABRIR OU FECHAR O MENU CLIENTE */
+    abrirFecharMenuCliente(){
+
+      if($(".menu-adicional-cliente").hasClass("aberto")){
+         
+            $(".menu-adicional-cliente").removeClass("aberto");
+        
+      }else{
+
+            $(".menu-adicional-cliente").addClass("aberto");
+        
+      }
+
+    }
+
+    /* ABRIR OU FECHAR O MENU PROFISSIONAL */
+    abrirFecharMenuProfissional(){
+
+      if($(".menu-adicional-profissional").hasClass("aberto")){
+         
+            $(".menu-adicional-profissional").removeClass("aberto");
+        
+      }else{
+
+            $(".menu-adicional-profissional").addClass("aberto");
+        
+      }
+
+    }
+
+
+
+
     view2(){
         this.views.view2();
         this.views.ativarMenuDois();
