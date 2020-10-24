@@ -647,6 +647,176 @@ section#content .view-3{
 
 
 
+.view-comprar-chaves{
+
+}
+
+
+.view-comprar-chaves h2{
+    font-weight: bold;
+    font-size: 23px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.view-comprar-chaves h2 a{
+  text-decoration: none !important;
+}
+
+.view-comprar-chaves h2 a img{
+    margin-top: -4px;
+    margin-right: 3px;
+}
+
+.view-comprar-chaves p{
+  color: #747474;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.view-comprar-chaves form{
+  margin-top: 34px;
+}
+
+
+
+
+.view-comprar-chaves .form-check{
+  padding-left: 0px !important;
+}
+
+.view-comprar-chaves .form-check input{
+  display: none;
+}
+
+.view-comprar-chaves .form-check label{
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #ccc;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    height: auto;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    transition: all 300ms ease;
+    padding: 16px;
+    padding-left: 48px;
+    animation-iteration-count: infinite;
+    font-weight: bold;
+    color: #000;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.view-comprar-chaves .form-check input:checked + label {
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #0091eb;
+    box-shadow: 0px 3px 6px #0091eb;
+    -webkit-transition:all 300ms ease;-moz-transition:all 300ms ease;transition:all 300ms ease;
+}
+
+.view-comprar-chaves .form-check label img{
+    width: 32px;
+    height: auto;
+    margin-right: 7px;
+    opacity: 0.4;
+    margin-bottom: unset;
+    position: absolute;
+    left: 9px;
+    top: 22px;
+}
+
+.view-comprar-chaves .form-check label small{
+    display: block;
+    font-size: 12px;
+    color: #747474;
+    margin-top: -3px;
+}
+
+.view-comprar-chaves .form-check input:checked + label img{
+   opacity: 1;
+}
+
+
+.view-comprar-chaves .form-check label span{
+   position: absolute;
+   right: 17px;
+   top: 22px;
+   font-size: 18px;
+   font-weight: bold;
+   color: #000;
+   text-align: right;
+}
+
+.view-comprar-chaves .form-check label span d{
+   display: block;
+   font-weight: 500;
+   color: #747474;
+   font-size: 12px;
+   margin-bottom: -4px;
+}
+
+
+
+.view-detalhe-anuncio{
+
+}
+
+.view-detalhe-anuncio h2{
+
+}
+
+.view-detalhe-anuncio p.sub{
+  color: #747474;
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-top: -11px;
+}
+
+.view-detalhe-anuncio{
+  background: #fff;
+}
+
+.view-detalhe-anuncio .caixa-destaque-servicos h2{
+    font-family: 'Barlow', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 7px;
+    font-weight: 300;
+}
+
+.view-detalhe-anuncio .caixa-destaque-servicos h2 img{
+  margin-right: 7px;
+}
+
+.actions-contato .btn-default,
+.actions-contato .btn-default:hover,
+.actions-contato .btn-default:active,
+.actions-contato .btn-default:focus,
+.actions-contato .btn-default:visited {
+    border-radius: 10px;
+    outline: none !important;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    height: 45px;
+    padding-top: 7px;
+    border-color: #0091EB !important;
+    width: 95%;
+    color: #0091EB;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 .busca-principal{

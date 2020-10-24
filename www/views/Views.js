@@ -362,6 +362,192 @@ class Views{
         
     }
 
+    viewComprarChaves(){
+
+            this._content.html(`
+            
+               <div class="row view-comprar-chaves" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                      <a href="javascript:void(0)" title="Voltar" onclick="app.viewPrincipalProfissional();">
+                         <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                      </a> 
+                      Comprar chaves</h2>
+                     <p>Pacote de chaves para você desbloquear anúncios dentro da plataforma</p>
+
+                     
+                     <form method="post" action="javascript:void(0)" onsubmit="app.selecaoPacoteCompra(event)">
+
+                           
+                           <!-- PACOTE -->
+                           <div class="form-check">
+                              <input class="form-check-input" type="radio" name="pacote" id="pacote1" value="1000" checked>
+                              <label class="form-check-label" for="pacote1">
+                                <img src="assets/images/simbolo.svg" alt="Comprar 1000 Chaves" />  
+                                1000 Chaves 
+                                <small>À vista por R$ 99,99</small>
+                                <span>
+                                  <d>ou em até 12X de</d>
+                                  R$ 9,99
+                                </span>
+                              </label>
+                           </div>
+                           <!-- PACOTE -->
+
+
+                           <!-- PACOTE -->
+                           <div class="form-check">
+                              <input class="form-check-input" type="radio" name="pacote" id="pacote2" value="5000">
+                              <label class="form-check-label" for="pacote2">
+                                <img src="assets/images/simbolo.svg" alt="Comprar 5000 Chaves" />  
+                                1000 Chaves 
+                                <small>À vista por R$ 199,99</small>
+                                <span>
+                                  <d>ou em até 12X de</d>
+                                  R$ 29,99
+                                </span>
+                              </label>
+                           </div>
+                           <!-- PACOTE -->
+
+
+                           <!-- PACOTE -->
+                           <div class="form-check">
+                              <input class="form-check-input" type="radio" name="pacote" id="pacote3" value="10000">
+                              <label class="form-check-label" for="pacote3">
+                                <img src="assets/images/simbolo.svg" alt="Comprar 10000 Chaves" />  
+                                10.000 Chaves 
+                                <small>À vista por R$ 399,99</small>
+                                <span>
+                                  <d>em até 12X de</d>
+                                  R$ 39,99
+                                </span>
+                              </label>
+                           </div>
+                           <!-- PACOTE -->
+
+                           
+                           <div class="form-group">
+                              <button typw="submit" class="btn btn-primary">
+                                  COMPRAR SELECIONADO
+                              </button> 
+                           </div>
+
+
+                     </form>
+
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+    }
+
+
+    viewDetalheAnuncio(){
+
+      this._content.html(`
+            
+               <div class="row view-dashboard view-profissional view-detalhe-anuncio" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                      <a href="javascript:void(0)" title="Voltar" onclick="app.viewPrincipalProfissional();">
+                         <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                      </a> 
+                      Detalhe orçamento</h2>
+                     <p class="sub">Parabéns! Você já desbloqueou esse orçamento!</p>
+
+                     <div class="loop-novos-servicos">
+                         
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+                         <div class="caixa-destaque-servicos">
+                           
+                             <div class="header-autor">
+
+                                 <h3>
+                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
+                                    Diogenes Junior
+                                    <small>
+                                       <p>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                       </p>
+                                       Brasileiro, 30 anos - Osasco SP
+                                    </small>
+                                 </h3>
+
+                             </div>
+
+                             <br clear="both">
+
+                             <div class="body-autor">
+                                  <h4>Nome do serviço solicitado.</h4>
+                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
+                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
+                                  <p><b>São Paulo - 5.5Km</b></p>
+                             </div>
+
+                             <div class="footer-autor">
+                               
+                               <h2>
+                                  <img src="assets/images/whatsapp.svg" alt="Whatsapp" /> (11) 9 4502-7877
+                               </h2>
+                               <h2>
+                                   <img src="assets/images/envelope.svg" alt="E-mail" /> diogenesjunior.ti@gmail.com
+                               </h2>
+
+                             </div>
+
+                         </div>
+
+                         <div class="actions-contato">
+                          
+                                <p>
+                                   <a href="javascript:void(0)" title="Ligar no telefone" class="btn btn-default">
+                                      Ligar no telefone
+                                   </a>
+                                </p>
+                                <p>
+                                   <a href="javascript:void(0)" title="Whatsapp" class="btn btn-default">
+                                      Whatsapp
+                                   </a>
+                                </p>
+                           
+                                <p>
+                                    <a href="javascript:void(0)" onclick="app.finalizarServico()" title="Serviço concluído" class="btn btn-default">
+                                      Serviço concluído!
+                                   </a>
+                                </p>
+                            
+                         </div>
+
+                         <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+                         <p>&nbsp;</p>
+                         <p>&nbsp;</p>
+                         <p>&nbsp;</p>
+                         <p>&nbsp;</p>
+
+
+                     </div>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+       
+    }
+
     view2(){
 
             this._content.html(`

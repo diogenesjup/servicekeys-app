@@ -21,9 +21,9 @@ class App {
         }
         if(ambiente=="PRODUCAO"){
 
-            this.urlDom = "https://servicekeys.diogenesjunior.com.br/app/www/";
-            this.urlApi = "https://servicekeys.diogenesjunior.com.br/api/";
-            this.urlCdn = "https://servicekeys.diogenesjunior.com.br/cdn/";
+            this.urlDom = "https://servicekeys.com.br/app/www/";
+            this.urlApi = "https://servicekeys.com.br/api/";
+            this.urlCdn = "https://servicekeys.com.br/cdn/";
 
         }
 
@@ -161,7 +161,14 @@ class App {
 
     comprarChaves(){
        
+        this.views.viewComprarChaves();
 
+    }
+
+    selecaoPacoteCompra(){
+        
+        // DIRECIONAR PARA O DETALHE DO ORÇAMENTO (PROVISORIO)
+        this.views.viewDetalheAnuncio();
 
     }
 
@@ -195,6 +202,12 @@ class App {
 
     }
 
+
+    finalizarServico(){
+       
+       aviso("Você realizou atendimento para esse cliente?","Apenas confirme o atendimento se você realizou o serviço orçado para esse cliente");
+
+    }
 
 
 
