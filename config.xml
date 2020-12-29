@@ -40,9 +40,6 @@
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
     <!-- STATUS BAR TRANSPARENTE -->
     <preference name="StatusBarBackgroundColor" value="#FBE158" />
-    
-
-    <preference name="deployment-target" value="11.0.0" />
 
     <preference name="SplashScreenDelay" value="1" />  
     <preference name="AutoHideSplashScreen" value="true" />  
@@ -54,20 +51,14 @@
     <preference name="FadeSplashScreen" value="false"/>
     <preference name="FadeSplashScreenDuration" value="1200"/>
     
-    <plugin name="cordova-android-support-gradle-release">
-       <variable name="ANDROID_SUPPORT_VERSION" value="15.0.0"/>
-    </plugin>
-   
+    
 
    <preference name="deployment-target" value="13.4.1" />
 
     
-   <preference name="android-minSdkVersion" value="19" />
+   <preference name="android-minSdkVersion" value="21" />
    <preference name="android-targetSdkVersion" value="29" />
    
-    
-    <preference name="phonegap-version" value="cli-9.0.0" />
-    <preference name='pgb-builder-version' value='1' />
     <!-- Plugins -->
 
     <!-- Core plugins  -->
@@ -83,8 +74,6 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-statusbar" />
 
-
-
     <plugin name="cordova-plugin-ionic-webview" />
 
     <preference name="WKWebViewOnly" value="true" />
@@ -95,9 +84,6 @@
     <preference name="Scheme" value="https" />
     <preference name="ScrollEnabled" value="true" />
 
-
-    
-    
     <!--
     <feature name="Camera">
        <param name="android-package" value="org.apache.cordova.CameraLauncher" />
@@ -134,9 +120,6 @@
     <icon src="www/assets/images/icones/768.png"  width="768" height="768" />
     <icon src="www/assets/images/icones/960.png"  width="960" height="960" />
 
-    
-
-
     <icon src="www/assets/images/icones/1024x1024.png"  width="1024" height="1024" />
 
     <!-- Define app splash screen for each platform. -->
@@ -161,7 +144,6 @@
     <access origin="*"/>
     <allow-navigation href="*" />
     <allow-intent href="*" />
-
 
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
