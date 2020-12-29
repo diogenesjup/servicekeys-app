@@ -12,6 +12,8 @@ class App {
         this.models = new Models();
         this.helpers = new Helpers();
 
+        
+
         if(ambiente=="HOMOLOGACAO"){
              
             this.urlDom = "http://127.0.0.1:8080/services-keys/public_html/app/app/www/";
@@ -26,6 +28,8 @@ class App {
             this.urlCdn = "https://servicekeys.com.br/cdn/";
 
         }
+
+        this.urlApiPagto = "https://pay.servicekeys.com.br/api-pagamentos/";
 
         this.token = token;
         this.tokenSms = tokenSms;
@@ -166,11 +170,127 @@ class App {
     }
 
     selecaoPacoteCompra(){
+
+        // SELECIONAR A OPÇÃO ESCOLHIDA
+        var pacoteEscolhido = $('input[name=pacote]:checked', '#formPacoteSelecao').val()
+
+        console.log("PACOTE ESCOLHIDO PELO USUÁRIO: "+pacoteEscolhido);
+
+        // DIRECIONAR PARA A TELA DE COMPRA DO PACOTE
+        this.views.paginaDeCmopra();
+
+        // CARREGAR O PRECO DO PACOTE ESCOLHIDO
+        //this.models.paginaDeCompra();
         
         // DIRECIONAR PARA O DETALHE DO ORÇAMENTO (PROVISORIO)
-        this.views.viewDetalheAnuncio();
+        //this.views.viewDetalheAnuncio();
 
     }
+
+    payBoleto(evemt){
+         
+         
+         $("#btnPayBoleto").html("PROCESSANDO...");
+         this.views.processandoPagamento();
+
+         this.models.payBoleto();
+
+
+  
+
+    }
+
+    payCartaoDeCredito(){
+        
+        $("#btnPayCartao").html("PROCESSANDO...");
+        this.views.processandoPagamentoCartao();
+        this.models.payCartaoDeCredito();
+
+    }
+
+    dadosBoleto(dados){
+        
+        this.views.dadosBoleto(dados);
+
+    }
+
+
+    /* CURSOS */
+    cursos(){
+       
+       this.views.cursos();
+
+    }
+
+    filtrotabelaCursos(){
+
+        var input, filter, ul, li, a, i;
+                  
+                  input = document.getElementById('buscaCursos');
+                  filter = input.value.toUpperCase();
+                  ul = document.getElementById("loopCursosLista");
+
+                  li = ul.getElementsByTagName('li');
+
+                  // Loop through all list items, and hide those who don't match the search query
+                  for (i = 0; i < li.length; i++) {
+                      a = li[i];
+                      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                          li[i].style.display = "";
+                      } else {
+                          li[i].style.display = "none";
+                      }
+                  }
+
+    }
+
+    
+    detalheCurso(idCurso){
+      
+
+      this.views.detalheCurso(idCurso);
+
+
+    }
+
+    detalheAula(idAula){
+       
+       this.views.detalheAula(idAula);
+
+    }
+
+    concluirAula(idAula){
+
+        this.views.concluirAula(idAula);
+
+    }
+
+
+    detalheTeste(idTeste){
+
+        this.views.detalheTeste(idTeste);
+
+    }
+
+
+    corrigirTeste(idTeste){
+         
+         this.views.corrigirTeste(idTeste);
+
+    }
+
+
+
+
+
+    /* INDIQUE E GANHE */
+    indiqueEGanhe(){
+         
+         this.views.indiqueEGanhe();
+
+    }
+
+
 
     /* ABRIR OU FECHAR O MENU CLIENTE */
     abrirFecharMenuCliente(){

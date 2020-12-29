@@ -161,7 +161,7 @@ class Views{
 
                  <a class="saldo-atual" href="javascript:void(0)" title="Seu saldo">
                     
-                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> 198
+                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> <span>00</span>
 
                  </a>
                  
@@ -363,8 +363,9 @@ class Views{
     }
 
     viewComprarChaves(){
+             
 
-            this._content.html(`
+             this._content.html(`
             
                <div class="row view-comprar-chaves" view-name="view-2">
                   <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
@@ -377,7 +378,7 @@ class Views{
                      <p>Pacote de chaves para você desbloquear anúncios dentro da plataforma</p>
 
                      
-                     <form method="post" action="javascript:void(0)" onsubmit="app.selecaoPacoteCompra(event)">
+                     <form id="formPacoteSelecao" method="post" action="javascript:void(0)" onsubmit="app.selecaoPacoteCompra(event)">
 
                            
                            <!-- PACOTE -->
@@ -401,7 +402,7 @@ class Views{
                               <input class="form-check-input" type="radio" name="pacote" id="pacote2" value="5000">
                               <label class="form-check-label" for="pacote2">
                                 <img src="assets/images/simbolo.svg" alt="Comprar 5000 Chaves" />  
-                                1000 Chaves 
+                                5000 Chaves 
                                 <small>À vista por R$ 199,99</small>
                                 <span>
                                   <d>ou em até 12X de</d>
@@ -444,8 +445,1129 @@ class Views{
             `);
 
             this.animarTransicao();
+            
 
     }
+
+
+    paginaDeCmopra(){
+       
+
+            this._content.html(`
+            
+               <div class="row view-comprar-chaves view-finalizar-comprar" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                      <a href="javascript:void(0)" title="Voltar" onclick="app.comprarChaves();">
+                         <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                      </a> 
+                      Comprar chaves</h2>
+                      <p>Você está comprando pacote de chaves</p>
+
+                           
+                           <!-- PACOTE ESCOLHIDO -->
+                           <div class="form-check" style="margin-top: 23px;margin-bottom: 56px;">
+                              <input class="form-check-input" type="radio" name="pacote" id="pacote1" value="1000" checked>
+                              <label class="form-check-label" for="pacote1">
+                                <img src="assets/images/simbolo.svg" alt="Comprar 1000 Chaves" />  
+                                1000 Chaves 
+                                <small>À vista por R$ 99,99</small>
+                                <span>
+                                  <d>ou em até 12X de</d>
+                                  R$ 9,99
+                                </span>
+                              </label>
+                           </div>
+                           <!-- PACOTE -->
+
+
+                           
+                           <h3 style="font-size:20px;">Como deseja realizar o pagamento?</h3>
+                           <p>
+                             Você pode realizar o pagamento através de cartão de crédito (liberação imediata) ou
+                             através de boleto bancário (liberação de 1 a 3 dias úteis).
+                           </p>
+
+
+                                 
+
+                                 <!-- FORMAS DE PAGAMENTO -->
+                                 <div class="formas-de-pagamento">
+                                     
+                                     <div class="accordion" id="formasDePagamentoCollapse">
+                                          
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCartaoCredito" aria-expanded="true" aria-controls="collapseCartaoCredito">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio21" name="customRadio" class="custom-control-input" checked>
+                                                    <label class="custom-control-label" for="customRadio21">Cartão de crédito</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+
+                                            <div id="collapseCartaoCredito" class="collapse show" aria-labelledby="headingOne" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                    
+                                                    <form method="post" action="javascript:void(0)" onsubmit="app.payCartaoDeCredito(event)">
+
+                                                          <div class="row">
+                                                              <div class="col-12 form-group">
+                                                                 <label>Número do cartão</label>
+                                                                 <input type="tel" id="pagtoCCNumero" name="pagtoCCNumero" class="form-control" placeholder="Número do cartão">
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-12 form-group">
+                                                              <label>Nome do títular</label>
+                                                                 <input type="text" id="pagtoCCNome" name="pagtoCCNome" class="form-control" placeholder="Nome impresso no cartão">
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-12 form-group">
+                                                                 <label>CPF do títular</label>
+                                                                 <input type="tel" id="pagtoCCNumeroCPF" name="pagtoCCNumeroCPF" class="form-control" placeholder="CPF do títular">
+                                                              </div>
+                                                          </div>
+                                                          
+                                                          <div class="row">
+                                                              
+                                                              <div class="col-6 form-group" style="padding-right: 5px;">
+                                                                 <label>Validade</label>
+                                                                 <input type="tel" id="pagtoCCValidade" name="pagtoCCValidade" class="form-control" placeholder="DD/AA">
+                                                              </div>
+                                                              
+                                                              <div class="col-6 form-group" style="padding-left: 5px;">
+                                                                 <label>CVV</label>
+                                                                 <input type="text" id="pagtoCCCvv" name="pagtoCCCvv" class="form-control" placeholder="CVV">
+                                                              </div>
+                                                              
+                                                          </div>
+
+                                                          <div class="row">
+                                                              <div class="col-12 form-group">
+                                                                 <label>Parcelas</label>
+                                                                 <select class="form-control" name="pagtoCCParcelas" id="pagtoCCParcelas">
+                                                                      <option value="1x">1x de R$ 99,00</option>
+                                                                      <option value="2x">2x de R$ 49,50</option>
+                                                                      <option value="3x">3x de R$ 33,00</option>
+                                                                      <option value="4x">4x de R$ 24,75</option>
+                                                                 </select>
+                                                              </div>
+                                                          </div>
+
+                                                          <div class="row">
+                                                                
+                                                                <div class="col-12">
+
+                                                                    <p id="areaStatusPagamentoCartao">
+                                                                        <button type="submit" id="btnPayCartao" class="btn btn-primary">
+                                                                            PAGAR COM CARTÃO DE CRÉDITO
+                                                                        </button>
+                                                                     </p>
+
+                                                                </div>
+
+                                                          </div>
+
+                                                    </form>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- FORMA DE PAGAMENTO -->
+
+                                         
+
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseBoleto" aria-expanded="false" aria-controls="collapseBoleto">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio23" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio23">Boleto bancário</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+                                            <div id="collapseBoleto" class="collapse" aria-labelledby="headingThree" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                    
+                                                    <form id="formPayBoleto" method="post" action="javascript:void(0)" onsubmit="app.payBoleto(event)">
+
+                                                        <div class="row">
+                                                              <div class="col-12 form-group">
+                                                                 <label>CPF</label>
+                                                                 <input type="tel" id="pagtoBBNumeroCPF" name="pagtoBBNumeroCPF" class="form-control" placeholder="CPF do pagador">
+                                                              </div>
+                                                        </div>
+                                                        <div class="row">
+                                                              <div class="col-12">
+                                                                 <label>Nome</label>
+                                                                 <input type="text" id="pagtoBBNome" name="pagtoBBNome" class="form-control" placeholder="Nome completo do pagador">
+                                                              </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                                
+                                                                <div class="col-12">
+
+                                                                    <p id="areaStatusPagamentoBoleto">
+                                                                        <button type="submit" id="btnPayBoleto" class="btn btn-primary">
+                                                                            PAGAR COM BOLETO
+                                                                        </button>
+                                                                     </p>
+
+                                                                </div>
+
+                                                          </div>
+
+                                                    </form>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- FORMA DE PAGAMENTO -->
+
+
+                                 </div>
+                                 <!-- FORMAS DE PAGAMENTO -->
+
+                                 
+
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+            app.helpers.carregarMascaras();
+
+    }
+
+    processandoPagamento(){
+
+      $("#areaStatusPagamentoBoleto").html(`
+            
+               <p>
+                 <img src="assets/images/loading.gif" alt="Carregando" />
+               </p>
+               <p>
+                 Aguarde, estamos processando o seu pagamento
+               </p>
+            
+      `);
+          
+
+    }
+
+
+    processandoPagamentoCartao(){
+
+      $("#areaStatusPagamentoCartao").html(`
+            
+               <p>
+                 <img src="assets/images/loading.gif" alt="Carregando" />
+               </p>
+               <p>
+                 Aguarde, estamos processando o seu pagamento
+               </p>
+            
+      `);
+
+    }
+
+
+
+    
+    dadosBoleto(dados){
+
+       this._content.html(`
+            
+               <div class="row view-comprar-chaves text-center confirmacao-boleto" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                 <h2>
+                                  <a href="javascript:void(0)" title="Voltar" onclick="app.viewPrincipalProfissional();">
+                                     <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                                  </a> 
+                                    Boleto gerado com sucesso!
+                                  </h2>
+                                 <!--
+                                 <h3 class="dados-boleto">
+                                     <small>dados do seu boleto:</small>
+                                     ${dados.invoiceUrl}
+                                     <small>vencimento: ${dados.dueDate}</small>
+                                 </h3>
+                                 -->
+                                  <p style="text-align:center">Suas chaves serão liberadas meditante confirmação do pagamento do boleto.</p>
+                                  <p style="text-align:center">
+                                    Acesse seu boleto diretamente<br>
+                                    <a href="${dados.invoiceUrl}" title="clique para acessar o seu boleto" target="_system">
+                                       clicando nesse link
+                                    </a>
+                                  </p> 
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+       
+    }
+
+
+    dadosCartaoPendente(erro){
+        
+        this._content.html(`
+            
+               <div class="row view-comprar-chaves text-center confirmacao-boleto" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                 <h2>
+                                  <a href="javascript:void(0)" title="Voltar" onclick="app.viewPrincipalProfissional();">
+                                     <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                                  </a> 
+                                    Seu pagamento não foi autorizado
+                                  </h2>
+                                 
+                                  <p style="text-align:center">Seu pagaento foi negado pela operadora do seu cartão de crédito. Essas são as informações retornadas:</p>
+                                  <p style="text-align:center">
+                                    ${erro}
+                                  </p> 
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+       
+
+
+
+    }
+
+
+        dadosCartao(urlRecibo){
+
+             this._content.html(`
+                  
+                     <div class="row view-comprar-chaves text-center confirmacao-boleto" view-name="view-2">
+                        <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                           
+                                       <h2 style="text-align:center">
+                                          <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color:#8BC34A;"></i><br>
+                                          Crédito de chaves comprado com sucesso
+                                        </h2>
+                                      
+                                        <p style="text-align:center">Suas chaves já estão disponíveis para uso.</p>
+                                        <p style="text-align:center">
+                                          Continuar para o desbloqueio da solicitação de orçamento:<br>
+                                          <a href="javascript:void(0)" onclick="app.views.viewDetalheAnuncio();" title="clique para acessar a solicitação">
+                                             confirmar o desbloqueio
+                                          </a>
+                                        </p>
+
+                                        <p style="text-align:center">
+                                          Seu recido do pagamento:<br>
+                                          <a href="${urlRecibo}"  title="clique para acessar" target="_system">
+                                             clique para acessar
+                                          </a>
+                                        </p> 
+
+                                       <p>&nbsp;</p>
+                                       <p>&nbsp;</p>
+                                       <p>&nbsp;</p>
+                                       <p>&nbsp;</p>
+
+                        </div>
+                     </div>
+                  
+                  `);
+
+                  this.animarTransicao();
+
+             
+          }
+
+
+
+
+    /* CURSOS */
+    cursos(){
+
+       this._content.html(`
+            
+               <div class="row view-comprar-chaves cursos-e-treinamentos" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                 <h2>
+                                  Cursos & Treinamentos
+                                  </h2>
+                                  <p>&nbsp;</p>
+
+
+                                 
+                                 <!-- ABAS -->
+                                 <div class="page-tabs">
+                                    <div class="pcss3t pcss3t-height-auto">
+                                         
+                                           <input type="radio" name="pcss3t" checked  id="tab1" class="tab-content-first">
+                                           <label for="tab1">Todos os cursos</label>
+                                                                                                
+                                           <input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
+                                           <label for="tab2">Em andamento</label>
+
+                                         <ul>
+
+                                             <!-- ABA UM -->
+                                             <li class="tab-content tab-content-first">
+                                                 
+                                                   <div class="form-group has-feedback">
+                                                      <input type="text" class="form-control" name="busca" id="buscaCursos" placeholder="Pesquise por cursos" onkeyup="app.filtrotabelaCursos();" />
+                                                   </div>
+
+                                                   <div class="loop-cursos" id="loop-cursos">
+                                                         
+                                                         <nav>
+                                                           
+                                                            <ul id="loopCursosLista">
+                                                                
+                                                                <li onclick="app.detalheCurso(1)">
+                                                                   Nome do Curso
+                                                                   <small>Breve resumo sobre o que o curso fala</small>
+                                                                </li>
+
+                                                                <li onclick="app.detalheCurso(2)">
+                                                                   Nome do Curso um pouco maior com mais de uma linha
+                                                                   <small>Breve resumo sobre o que o curso fala</small>
+                                                                </li>
+
+                                                                <li onclick="app.detalheCurso(3)">
+                                                                   Terceiro e último curso de exemplo
+                                                                   <small>Breve resumo sobre o que o curso fala, um pouco maior
+                                                                   que os demais, e aqui vamos forçar uma quebra de texto (truncate)
+                                                                    só para ver como funcionaria</small>
+                                                                </li>
+
+                                                            </ul>
+
+                                                         </nav>
+
+                                                   </div>
+
+                                             </li>
+                                             <!-- ABA UM -->
+
+                                             <!-- ABA DOIS -->
+                                             <li class="tab-content tab-content-2">
+                                                
+                                                  <div class="loop-cursos" id="loop-cursos-andamento">
+                                                           
+                                                           <nav>
+                                                             
+                                                              <ul>
+                                                                  
+                                                                  <li onclick="app.detalheCurso(4)">
+                                                                     Nome do Curso em Andamento
+                                                                     <small>Breve resumo sobre o que o curso fala</small>
+
+                                                                     <div class="progress">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                                                     </div>
+
+                                                                  </li>
+
+                                                                 
+
+                                                              </ul>
+
+                                                           </nav>
+
+                                                     </div>
+
+                                             </li>
+                                             <!-- ABA DOIS -->
+
+                                         </ul>
+                                    </div>
+                                  </div>
+                                  <!-- ABAS -->     
+                                  
+                                 
+                                 
+                                 
+
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+       
+    }
+
+
+    detalheCurso(idDetalheCurso){
+
+         
+         this._content.html(`
+            
+               <div class="row view-comprar-chaves cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                  <h2>
+                                     <a href="javascript:void(0)" title="Voltar" onclick="app.cursos();">
+                                        <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                                     </a> 
+                                     <small>Cursos & Treinamentos</small>
+                                     Nome do Curso de exemplo
+                                  </h2>
+
+                                  <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">seu progresso: 25%</div>
+                                  </div>
+
+                                  <p>&nbsp;</p>
+
+                                  <div class="metas-curso">
+
+                                      <p>Caros amigos, a competitividade nas transações comerciais promove a alavancagem das formas de ação. Todas estas questões, devidamente ponderadas, levantam dúvidas sobre se a percepção das dificuldades cumpre um papel essencial na formulação da gestão inovadora da qual fazemos parte.</p>
+                                      <p>&nbsp;</p>
+
+
+                                      
+                                      <h3>Resumo do curso</h3>
+
+                                      <nav class="destaque-cursos">
+                                        <ul>
+                                          <li>
+                                            <i class="fa fa-files-o"></i> Aulas <span>05 aulas</span>
+                                          </li>
+                                          <li>
+                                            <i class="fa fa-clock-o"></i> Duração <span>1 hora</span>
+                                          </li>
+                                          <li>
+                                             <i class="fa fa-level-up"></i> Nível <span>Intermediário</span>
+                                          </li>
+                                        </ul>
+                                      </nav>
+
+                                      
+                                      <h3>Conteúdo</h3>
+                                      <nav class="destaque-cursos">
+                                        <ul>
+                                          
+                                          <li onclick="app.detalheAula(1)">
+                                            <i class="fa fa-play-circle"></i> Aula 01 - Título da Aula de exemplo
+                                            <small>Aqui um breve resumo da aula.</small>
+                                          </li>
+
+                                          <li onclick="app.detalheAula(1)">
+                                            <i class="fa fa-play-circle"></i> Aula 02 - Os exemplos continuam
+                                            <small>Aqui um breve resumo da aula.</small>
+                                          </li>
+
+                                          <li onclick="app.detalheAula(1)">
+                                            <i class="fa fa-play-circle"></i> Aula 03 - Título da Aula
+                                            <small>Aqui um breve resumo da aula.</small>
+                                          </li>
+
+                                          <li onclick="app.detalheAula(1)">
+                                            <i class="fa fa-play-circle"></i> Aula 04 - Título da Aula
+                                            <small>Aqui um breve resumo da aula.</small>
+                                          </li>
+
+                                          <li onclick="app.detalheTeste(1)">
+                                            <i class="fa fa-play-circle"></i> Aula 05 - Teste final de conclusão do curso
+                                            <small>Aqui um breve resumo sobre o que seria o teste.</small>
+                                          </li>
+                                          
+                                        </ul>
+                                      </nav>
+
+                                      <div>
+                                          <a href="javascript:void(0)" onclick="app.detalheAula(1)" title="Fazer esse curso" class="btn btn-primary">
+                                              Fazer esse curso
+                                          </a>
+                                      </div>
+                                      
+
+                                  </div>
+
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+
+    }
+
+
+   detalheAula(idAula){
+     
+       
+       this._content.html(`
+            
+               <div class="row view-comprar-chaves cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                  <h2>
+                                     <a href="javascript:void(0)" title="Voltar para o início do curso" onclick="app.detalheCurso(1)">
+                                        <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                                     </a> 
+                                     <small>Nome do curso de exemplo</small>
+                                     01 - Aula de Exemplo
+                                  </h2>
+
+                                  <p>&nbsp;</p>
+
+                                  <div class="metas-curso">
+
+                                      <div id="feedbackAula"></div>
+
+                                      <div class="video-aula">
+                                          <iframe width="560" height="315" src="https://www.youtube.com/embed/CfWgbph-Mqw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                      </div>
+
+                                      <div class="conteudos-aula">
+                                           <div class="accordion" id="topicos">
+
+
+                                                  <!-- TOPICO 1 -->
+                                                  <div class="card">
+                                                    <div class="card-header" id="pergunta1Header">
+                                                      <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#pergunta1" aria-expanded="true" aria-controls="pergunta1">
+                                                          Tópico 1: Introdução
+                                                          <small>Resumo sobre o que fala essa sessão</small>
+                                                          <img src="assets/images/angle-down.svg" alt="Abrir esse tópico" />
+                                                        </button>
+                                                      </h2>
+                                                    </div>
+
+                                                    <div id="pergunta1" class="collapse" aria-labelledby="pergunta1" data-parent="#topicos">
+                                                      <div class="card-body">
+                                                         <p>
+                                                            As experiências acumuladas demonstram que o novo modelo estrutural aqui preconizado assume importantes posições no estabelecimento dos paradigmas corporativos. Desta maneira, a consulta aos diversos militantes faz parte de um processo de gerenciamento das novas proposições.
+                                                         </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <!-- TOPICO 1 -->
+
+
+
+                                                  <!-- TOPICO 2 -->
+                                                  <div class="card">
+                                                    <div class="card-header" id="pergunta2Header">
+                                                      <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#pergunta2" aria-expanded="true" aria-controls="pergunta2">
+                                                          Tópico 2: Conteúdo
+                                                          <small>Resumo sobre o que fala essa sessão</small>
+                                                          <img src="assets/images/angle-down.svg" alt="Abrir esse tópico" />
+                                                        </button>
+                                                      </h2>
+                                                    </div>
+
+                                                    <div id="pergunta2" class="collapse" aria-labelledby="pergunta2" data-parent="#topicos">
+                                                      <div class="card-body">
+                                                         <p>
+                                                            As experiências acumuladas demonstram que o novo modelo estrutural aqui preconizado assume importantes posições no estabelecimento dos paradigmas corporativos. Desta maneira, a consulta aos diversos militantes faz parte de um processo de gerenciamento das novas proposições.
+                                                         </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <!-- TOPICO 2 -->
+
+
+
+                                                  <!-- TOPICO 3 -->
+                                                  <div class="card">
+                                                    <div class="card-header" id="pergunta3Header">
+                                                      <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#pergunta3" aria-expanded="true" aria-controls="pergunta3">
+                                                          Tópico 3: Resumo
+                                                          <small>Resumo sobre o que fala essa sessão</small>
+                                                          <img src="assets/images/angle-down.svg" alt="Abrir esse tópico" />
+                                                        </button>
+                                                      </h2>
+                                                    </div>
+
+                                                    <div id="pergunta3" class="collapse" aria-labelledby="pergunta3" data-parent="#topicos">
+                                                      <div class="card-body">
+                                                         <img src="assets/images/topico1.jpg" alt="" />
+                                                         <p>
+                                                            As experiências acumuladas demonstram que o novo modelo estrutural aqui preconizado assume importantes posições no estabelecimento dos paradigmas corporativos. Desta maneira, a consulta aos diversos militantes faz parte de um processo de gerenciamento das novas proposições.
+                                                         </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <!-- TOPICO 3 -->
+
+
+
+                                           </div>
+                                      </div>
+
+                                      <div>
+                                          <a href="javascript:void(0)" onclick="app.concluirAula(1)" title="Concluir essa aula" class="btn btn-primary">
+                                              Concluir essa aula
+                                          </a>
+                                      </div>
+                                      
+
+                                  </div>
+
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+            
+            // FORÇAR O SCROLL PARA O TOPO
+            var objDiv = document.getElementById("content");
+            objDiv.scrollTop = 0;
+
+
+   }
+
+
+
+
+   concluirAula(idAula){
+                 
+                 // INFORMAR O USUÁRIO SOBRE A CONCLUSÃO DA AULA
+                 $("#feedbackAula").html(`
+       
+                                           <div class="alert alert-success" role="alert">
+                                                <p>
+                                                   <b>Parabéns! Aula concluída com sucesso</b>
+                                                </p>
+                                                <p>
+                                                   <a href="javascript:void(0)" onclick="app.detalheTeste(1)" class="btn btn-primary">
+                                                       Próxima aula <i class="fa fa-angle-right"></i>
+                                                   </a>
+                                                </p>
+                                            </div>
+
+                  `);
+
+                 // FORÇAR O SCROLL PARA O TOPO
+                 var objDiv = document.getElementById("content");
+                 objDiv.scrollTop = 0;
+
+   }
+   
+
+   detalheTeste(){
+     
+        
+        this._content.html(`
+            
+               <div class="row cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                  <h2>
+                                     <a href="javascript:void(0)" title="Voltar para o início do curso" onclick="app.detalheCurso(1)">
+                                        <img src="assets/images/voltar-views.svg" alt="Voltar" />
+                                     </a> 
+                                     <small>Nome do curso de exemplo</small>
+                                     02 - Testes da Aula
+                                  </h2>
+
+                                  <p>&nbsp;</p>
+
+                                  <div class="metas-curso">
+
+                                      <div id="feedbackAula"></div>
+
+                                    
+                                      <div class="conteudos-aula conteudos-testes">
+                                          
+                                          <!-- PERGUNTA -->
+                                          <div class="pergunta">
+                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
+                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
+                                              <div class="sessao-alternativas caixa-testes">
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1" value="=CONST.SE(C2:C13;>=9)" checked>
+                                                      <label class="form-check-label" for="alt1">
+                                                        Alternativa 1
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt2">
+                                                        Alternativa 2
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt3">
+                                                        Alternativa 3 de exemplo
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt4">
+                                                        Alternativa 4
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="feedback-alternativas" id="fa1"></div>
+
+                                              </div>
+                                          </div>
+                                          <!-- PERGUNTA -->
+
+
+
+                                          <!-- PERGUNTA -->
+                                          <div class="pergunta">
+                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
+                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
+                                              <div class="sessao-alternativas caixa-testes">
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1b" value="=CONST.SE(C2:C13;>=9)" checked>
+                                                      <label class="form-check-label" for="alt1b">
+                                                        Alternativa 1
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2b" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt2b">
+                                                        Alternativa 2
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3b" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt3b">
+                                                        Alternativa 3 de exemplo
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4b" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt4b">
+                                                        Alternativa 4
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="feedback-alternativas" id="fa2"></div>
+
+                                              </div>
+                                          </div>
+                                          <!-- PERGUNTA -->
+
+
+
+                                          <!-- PERGUNTA -->
+                                          <div class="pergunta">
+                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
+                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
+                                              <div class="sessao-alternativas caixa-testes">
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1v" value="=CONST.SE(C2:C13;>=9)" checked>
+                                                      <label class="form-check-label" for="alt1v">
+                                                        Alternativa 1
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2v" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt2v">
+                                                        Alternativa 2
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3v" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt3v">
+                                                        Alternativa 3 de exemplo
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4d" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt4d">
+                                                        Alternativa 4
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="feedback-alternativas" id="fa3"></div>
+
+                                              </div>
+                                          </div>
+                                          <!-- PERGUNTA -->
+
+
+
+                                          <!-- PERGUNTA -->
+                                          <div class="pergunta">
+                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
+                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
+                                              <div class="sessao-alternativas caixa-testes">
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1e" value="=CONST.SE(C2:C13;>=9)" checked>
+                                                      <label class="form-check-label" for="alt1e">
+                                                        Alternativa 1
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2e" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt2e">
+                                                        Alternativa 2
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3e" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt3e">
+                                                        Alternativa 3 de exemplo
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4e" value="=CONST.SE(C2:C13;>=9)">
+                                                      <label class="form-check-label" for="alt4e">
+                                                        Alternativa 4
+                                                      </label>
+                                                   </div>
+
+                                                   <div class="feedback-alternativas" id="fa4"></div>
+
+                                              </div>
+                                          </div>
+                                          <!-- PERGUNTA -->
+                                           
+                                      </div>
+
+                                      <div>
+                                          <a href="javascript:void(0)" onclick="app.corrigirTeste(1)" title="Corrigir teste" class="btn btn-primary">
+                                              Corrigir teste
+                                          </a>
+                                      </div>
+                                      
+
+                                  </div>
+
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+            
+            // FORÇAR O SCROLL PARA O TOPO
+            var objDiv = document.getElementById("content");
+            objDiv.scrollTop = 0;
+
+
+   }
+
+
+
+
+   corrigirTeste(idTeste){
+
+
+            // INFORMAR O USUÁRIO SOBRE A CONCLUSÃO DA AULA
+            $("#feedbackAula").html(`
+       
+                                           <div class="alert alert-success" role="alert">
+                                                <p>
+                                                   <b>Parabéns! Teste concluído com sucesso e sua nota foi 8 (80%)</b>
+                                                </p>
+                                                <p>
+                                                   <a href="javascript:void(0)" onclick="app.detalheAula(1)" class="btn btn-primary">
+                                                       Próxima aula <i class="fa fa-angle-right"></i>
+                                                   </a>
+                                                </p>
+                                            </div>
+
+            `);
+
+
+            // INFORMAR O USUÁRIO SOBRE A CORREÇÃO DO TESTE
+            $("#fa1").html(`
+       
+                                           <div class="alert alert-success" role="alert">
+                                                <p>
+                                                   Resposta correta!
+                                                </p>
+                                                
+                                            </div>
+
+            `);
+
+            $("#fa2").html(`
+       
+                                           <div class="alert alert-danger" role="alert">
+                                                <p>
+                                                   Resposta incorreta! Tente novamente, ou faça novamente as aulas anteriores.
+                                                </p>
+                                                
+                                            </div>
+
+            `);
+
+            $("#fa3").html(`
+       
+                                           <div class="alert alert-success" role="alert">
+                                                <p>
+                                                   Resposta correta!
+                                                </p>
+                                                
+                                            </div>
+
+            `);
+
+            $("#fa4").html(`
+       
+                                           <div class="alert alert-success" role="alert">
+                                                <p>
+                                                   Resposta correta!
+                                                </p>
+                                                
+                                            </div>
+
+            `);
+
+
+            // FORÇAR O SCROLL PARA O TOPO
+            var objDiv = document.getElementById("content");
+            objDiv.scrollTop = 0;
+
+   }
+
+
+
+
+
+
+
+    
+    /* INDIQUE E GANHE */
+    indiqueEGanhe(){
+          
+
+          this._content.html(`
+            
+               <div class="row view-comprar-chaves cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                  <h2>
+                                     Indique e Ganhe!
+                                  </h2>
+
+                                  <p>&nbsp;</p>
+
+                                  <p>
+                                    Compartilhe o aplicativo <b>SERVICE KEYS</b> com seus amigos e contatos 
+                                    e ganhe chaves para desbloquear orçamentos!
+                                  </p>
+                                  <p>
+                                    Se as pessoas que você indicou, se cadastrarem, você ganha na hora até 100 chaves!!
+                                  </p>
+
+                                  <div class="social">
+                                      
+                                      <a href="#" title="Compartilhar por e-mail">
+                                         <i class="fa fa-envelope"></i>
+                                      </a>
+
+                                      <a href="#" title="Compartilhar por whatsapp">
+                                         <i class="fa fa-whatsapp"></i>
+                                      </a>
+
+                                      <a href="#" title="Compartilhar no Facebook">
+                                         <i class="fa fa-facebook"></i>
+                                      </a>
+
+                                  </div>
+                                  
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+    }
+
+
 
 
     viewDetalheAnuncio(){
@@ -511,12 +1633,12 @@ class Views{
                          <div class="actions-contato">
                           
                                 <p>
-                                   <a href="javascript:void(0)" title="Ligar no telefone" class="btn btn-default">
+                                   <a href="tel:11945027877" target="_system" title="Ligar no telefone" class="btn btn-default">
                                       Ligar no telefone
                                    </a>
                                 </p>
                                 <p>
-                                   <a href="javascript:void(0)" title="Whatsapp" class="btn btn-default">
+                                   <a href="https://api.whatsapp.com/send?l=pt_BR&phone=5511945027877" target="_system" title="Whatsapp" class="btn btn-default">
                                       Whatsapp
                                    </a>
                                 </p>
