@@ -24,7 +24,7 @@ class App {
         if(ambiente=="PRODUCAO"){
 
             this.urlDom = "https://servicekeys.com.br/app/www/";
-            this.urlApi = "https://servicekeys.com.br/api/";
+            this.urlApi = "https://servicekeys.com.br/apiservicekeys/";
             this.urlCdn = "https://servicekeys.com.br/cdn/";
 
         }
@@ -141,7 +141,7 @@ class App {
 
         if(tipoPerfil=="cliente"){
 
-            this.views.viewPrincipalCliente();
+            app.opcoesCarretamentoPerfilCliente();
 
         }else{
 
@@ -150,6 +150,164 @@ class App {
         }
 
     }
+
+    opcoesCarretamentoPerfilCliente(){
+
+        this.views.viewPrincipalCliente();
+        this.models.categoriasAtendimento();
+
+    }
+
+    // PASSO 2 DO ATENDIMENTO
+    novoAtendimentoPasso2(idCategoria,nomeCategoria){
+
+        // DESCOBRIR SE A CATEGORIA TEM CATEGORIAS FILHAS, 
+        var categorias = JSON.parse(localStorage.getItem("categoiasAtendimento"));
+
+
+        $("#listaDeCategorias").html(`
+
+            <li>
+               <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso3(${idCategoria},'${nomeCategoria}')" title="${nomeCategoria}">
+                  <b>${nomeCategoria}</b> <img src="assets/images/right.svg" alt="Ver mais">
+               </a>
+            </li>
+
+            <li class="carregandoCategorias" style="text-align:left;font-size:13px;">
+                <img src="assets/images/loading.gif" alt="Carregando" style="width:17px;margin-right:5px;float:none;" /> Carregando
+            </li>
+
+        `);
+
+        var n = "";
+        var entrei = 0;
+        
+        // VARRER AS CATEGORIAS
+        for(var i = 0;i<categorias.categorias.length;i++){
+
+             if(categorias.categorias[i].relacao.length>0){
+
+                for(var j = 0;j<categorias.categorias[i].relacao.length;j++){
+
+                    if(categorias.categorias[i].relacao[j]==idCategoria){
+
+                        $("#fraseDeAbertura").fadeOut(1);
+
+                        entrei = 1;
+
+                        n = categorias.categorias[i];
+
+                        $(".carregandoCategorias").remove();
+                        $("#listaDeCategorias").append(`
+
+                            <li>
+                                <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso3(${n.id},'${n.titulo}')" title="${n.titulo}">
+                                   ${n.titulo} <img src="assets/images/right.svg" alt="Ver mais">
+                                </a>
+                            </li>
+
+                        `);
+
+                    }
+
+                }
+
+
+             }// FINAL DO IF DO TAMANHO
+
+        }// FINAL DO FOR
+
+        app.views._content.append(`
+                <p style="text-align:center;font-size:11px;padding-top:20px;">
+                    <a href="javascript:void(0)" onclick="app.opcoesCarretamentoPerfilCliente();" title="VOLTAR AO INÍCNIO" style="color:#747474;text-decoration:none;">VOLTAR AO INÍCIO</a>
+                </p>
+        `);
+
+        if(entrei==0){
+            
+            localStorage.setItem("tipoHistoricoCategoria","pai");
+            app.novoAtendimentoPasso3(idCategoria,nomeCategoria);
+        
+        }
+
+
+    }
+    
+
+
+    novoAtendimentoPasso3(idCategoria,nomeCategoria){
+
+        localStorage.setItem("idCategoriaHistorico",idCategoria);
+        localStorage.setItem("nomeCategoria",nomeCategoria);
+
+        this.views.novoAtendimento(idCategoria,nomeCategoria);
+
+    }
+
+    enviarAtendimento(){
+
+        this.models.enviarAtendimento();
+
+    }
+
+
+    
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   FILTRO TABELA GERAIS
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+filtrotabela(){
+
+                  var input, filter, ul, li, a, i;
+                  
+                  input = document.getElementById('filtroTabela');
+                  filter = input.value.toUpperCase();
+                  ul = document.getElementById("listaDeCategorias");
+
+                  li = ul.getElementsByTagName('li');
+                  var entrei = 0;
+
+                   for (i = 0; i < li.length; i++) {
+                      a = li[i];
+                      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                          li[i].style.display = "";
+                          entrei = 1;
+                      } else {
+                          li[i].style.display = "none";
+                          
+                      }
+                  }
+
+                  if($(input).val()==""){
+                    $("#fraseDeAbertura").fadeIn(1);
+                }else{
+                    $("#fraseDeAbertura").fadeOut(1);
+                }
+
+                if(entrei==0){
+
+                    $("#listaDeCategorias").append(`
+
+                        <li class="semResultados" style="text-align:left;font-size:13px;">
+                            Nenhum resultado encontrado
+                        </li>
+
+                    `);
+
+                }else{
+
+                    $(".semResultados").remove();
+
+                }
+
+     }
+
+
 
     viewPrincipalProfissional(){
       
@@ -328,6 +486,31 @@ class App {
        aviso("Você realizou atendimento para esse cliente?","Apenas confirme o atendimento se você realizou o serviço orçado para esse cliente");
 
     }
+
+
+
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   EDITAR PERFIL USUARIO LOGADO
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+    editarPerfil(){
+
+       this.views.editarPerfil();
+       this.models.editarPerfil();
+
+    }
+    procEditarPerfil(){
+       
+       this.models.procEditarPerfil();
+
+    }
+
 
 
 

@@ -2029,12 +2029,34 @@ nav.destaque-cursos ul li small{
 
 
 
+.novo-atendimento{
+  background: none !important;
+}
 
+.novo-atendimento p{
+    color: #747474;
+    font-size: 14px;
+    line-height: 23px;
+}
+.novo-atendimento h2{
+    font-size: 24px;
+    width: 75%;
+}
 
+.novo-atendimento h2 small{
+    display: block;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 7px;
+}
 
-
-
-
+.novo-atendimento .resumo-usuario{
+    position: relative;
+    display: block;
+    background: #f9f9f9;
+    padding: 20px;
+}
 
 
 

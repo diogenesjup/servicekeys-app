@@ -16,7 +16,7 @@ class Models{
                   console.log("%c VERIFICAÇÃO DE DISPONIBILIDADE DE API","background:#ff0000;color:#fff;");
                   console.log(dados);
 
-                  localStorage.setItem("dadosApi",JSON.stringify(dados));
+                
 
               });
               request.fail(function (dados) {
@@ -44,7 +44,7 @@ class Models{
               var request = $.ajax({
 
                   method: "POST",
-                  url: app.urlApi+"login",
+                  url: app.urlApi+"login-api",
                   data:{token:app.token,tokenSms:app.tokenSms,loginUsuario:loginUsuario,loginSenha:loginSenha}
               
               })
@@ -54,13 +54,25 @@ class Models{
                   console.log(dados);
 
                   $("#btnLoginEmailSenha").html("Login");
-
-                  var dadosUsuario = JSON.stringify(dados);
                   
                   if(dados.sucesso=="200"){
+
+                    var dadosUsuario = JSON.stringify(dados);
                      
-                     localStorage.setItem("dadosUsuario",dadosUsuario);
-                     app.login(dados.id,dados.email,dadosUsuario);
+                     //localStorage.setItem("dadosUsuario",dadosUsuario);
+                     //app.login(dados.id,dados.email,dadosUsuario);
+
+                     localStorage.setItem("dadosUsuario",dadosUsuario.dados);
+                     
+                     
+
+                     localStorage.setItem("nomeUsuario",dados.nome);
+
+                     localStorage.setItem("nomeCompletoUsuario",dados.nome_completo);
+                     localStorage.setItem("emailUsuario",dados.email);
+                     localStorage.setItem("celularUsuario",dados.celular);
+
+                     app.login(dados.id_usuario,loginUsuario,dadosUsuario.dados);
 
                   
                   }else{
@@ -95,7 +107,7 @@ class Models{
               var request = $.ajax({
 
                   method: "POST",
-                  url: app.urlApi+"tokensmslogin",
+                  url: app.urlApi+"token-sms-login",
                   data:{token:app.token,tokenSms:app.tokenSms,loginUsuario:loginUsuario}
               
               })
@@ -110,7 +122,7 @@ class Models{
                   
                   if(dados.sucesso=="200"){
                   	 
-                  	 localStorage.setItem("dadosUsuario",dadosUsuario);
+                  	 //localStorage.setItem("dadosUsuario",dadosUsuario);
                   	 //app.login(dados.id,dados.email,dadosUsuario);
 
                      app.verificarCodigoSms();
@@ -124,7 +136,7 @@ class Models{
                      // VAMOS DIRECIONAR O USUÁRIO PARA CONCLUIR O CADASTRO
                      
                      // SALVAR O CELULAR PARA O CADASTRO
-                     localStorage.setItem("celularCadastro",dados.celular);
+                     localStorage.setItem("celularCadastro",loginUsuario);
 
                      app.cadastro();
 
@@ -155,7 +167,7 @@ class Models{
               var request = $.ajax({
 
                   method: "POST",
-                  url: app.urlApi+"verificarsms",
+                  url: app.urlApi+"verificar-sms",
                   data:{token:app.token,codigoSms:codigoSms}
               
               })
@@ -170,8 +182,18 @@ class Models{
                   
                   if(dados.sucesso=="200"){
                      
-                     localStorage.setItem("dadosUsuario",dadosUsuario);
-                     app.login(dados.id,dados.email,dadosUsuario);
+                     localStorage.setItem("dadosUsuario",dados.usuarios[0].data);
+                     
+                     
+
+                     localStorage.setItem("nomeUsuario",dados.nome);
+
+                     localStorage.setItem("nomeCompletoUsuario",dados.nome_completo);
+                     localStorage.setItem("emailUsuario",dados.email);
+                     localStorage.setItem("celularUsuario",dados.celular);
+
+                     app.login(dados.id_usuario,dados.email,dados.usuarios[0].data);
+                  
                   
                   }else{
                      
@@ -203,13 +225,13 @@ class Models{
       var cadastroNome = $("#cadastroNome").val();
       var cadastroEmail = $("#cadastroEmail").val();
       var cadastroSenha = $("#cadastroSenha").val();
-      var cadastroCelular = $("#cadastroCelular").val();
+      var cadastroCelular = localStorage.getItem("celularCadastro");
 
               // INICIO CHAMADA AJAX
               var request = $.ajax({
 
                   method: "POST",
-                  url: app.urlApi+"cadastro",
+                  url: app.urlApi+"cadastro-usuarios",
                   data:{token:app.token,cadastroCelular:cadastroCelular,cadastroNome:cadastroNome,cadastroEmail:cadastroEmail,cadastroSenha:cadastroSenha}
               
               })
@@ -224,10 +246,19 @@ class Models{
                   
                   if(dados.sucesso=="200"){
                      
-                     localStorage.setItem("dadosUsuario",dadosUsuario);
+                      localStorage.setItem("dadosUsuario",dadosUsuario);
+                      localStorage.setItem("nomeUsuario",dados.nome);
+                    
 
-                     // SE DEU TUDO CERTO, VAMOS LOGAR O USUÁRIO
-                     app.login(dados.id,dados.email,dadosUsuario);
+                      localStorage.setItem("nomeCompletoUsuario",dados.nome_completo);
+                      localStorage.setItem("emailUsuario",dados.email);
+                      localStorage.setItem("celularUsuario",dados.celular);
+  
+                      // SE DEU TUDO CERTO, VAMOS LOGAR O USUÁRIO
+                      app.login(dados.id,dados.email,dadosUsuario);
+
+                      aviso("Bem vindo!","Seu cadastro foi realizado com sucesso, você já pode aproveitar as vantagens do nosso aplicativo.")
+                       
                   
                   }else{
                      
@@ -260,7 +291,7 @@ class Models{
               var request = $.ajax({
 
                   method: "POST",
-                  url: app.urlApi+"resetsenha",
+                  url: app.urlApi+"reset-senha",
                   data:{token:app.token,resetEmail:resetEmail}
               
               })
@@ -277,7 +308,8 @@ class Models{
                      
                      app.viewLogin();
                      aviso("Deu certo! Senha resetada","Enviamos para o seu e-mails instruções sobre o reset de senha.");
-                     
+                     $("#btnViewResetarSenha").html("Resetar senha");
+
                   }else{
                      
                      aviso("Oops! E-mail não encontrado","Seu e-mail não foi localizado na plataforma. Verique as informações inseridas e tente novamente.");
@@ -289,6 +321,7 @@ class Models{
                      
                    console.log("API NÃO DISPONÍVEL (ResetDeSenha)");
                    console.log(dados);
+                   $("#btnViewResetarSenha").html("Resetar senha");
                    aviso("Oops! Algo deu errado","Nossos servidores estão passando por dificuldades técnicas, tente novamente em alguns minutos");
 
               });
@@ -296,6 +329,282 @@ class Models{
 
 
     }
+
+
+
+
+
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   EDITAR ACESSO USUARIO PERFIL LOGADO
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+    editarPerfil(){
+
+      var idUsuario = localStorage.getItem("idUsuario");
+
+      let xhr = new XMLHttpRequest();
+       
+      /* CONFIGURAÇÕES */
+      //xhr.open('GET', app.urlApi+'admin-editarPerfil.php');
+      xhr.open('POST', app.urlApi+'editar-perfil',true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      var params = 'idUsuario='+idUsuario+"&token="+app.token;
+
+      /*
+
+        Então, quais são os estados possíveis de um requisição AJAX? Listaremos abaixo os estados:
+        0: requisição ainda não iniciada
+        1: conexão com o servidor estabelecida
+        2: requisição recebida
+        3: processando requisição
+        4: requisição está concluída e a resposta está pronta
+        O estado 4 é o que mais nos interessa, porque é nele que temos acesso à resposta enviada pelo servidor.
+
+      */
+      
+      xhr.onreadystatechange = () => {
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("DADOS RETORNADOS EDITAR PERFIL");
+              console.log(JSON.parse(xhr.responseText));
+
+              var dados = JSON.parse(xhr.responseText);
+
+                  if(dados.sucesso==200){
+
+                    $(".placeholder").hide(0);
+                    $(".form").fadeIn(500);
+                    
+                    $("#editarPerfilNome").val(dados.nome);
+                    $("#editarPerfilEmail").val(dados.dados[0].user_email);
+                    $("#editarPerfilCelular").val(dados.celular);
+                    
+                    // CARREGAR MASCARAS
+                    app.helpers.carregarMascaras();
+
+                  }else{
+                    
+                    aviso("Oops! Algo deu errado!","Nossos servidores estão passando por dificuldades técnicas, tente novamente em alguns minutos.");
+
+                  }
+
+
+            }else{
+              
+              console.log("SEM SUCESSO editarPerfil()");
+              console.log(JSON.parse(xhr.responseText));
+
+            }
+
+          }
+      };
+
+      /* EXECUTA */
+      xhr.send(params);
+
+
+    }
+    
+    
+    procEditarPerfil(){
+        
+        $("#btnEditar").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formEditarPerfil').formSerialize();
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'proc-editar-perfil',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              console.log(JSON.parse(xhr.responseText));
+              aviso("Deu certo!","As informações foram atualizadas.");
+
+            }else{
+              
+              console.log("SEM SUCESSO procEditarPerfil()");
+              console.log(JSON.parse(xhr.responseText));
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnEditar").html("Atualizar");
+      $(".form-control").removeAttr("readonly");
+
+
+    }
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   BUSCAR AS CATEGORIAS DE ATENDIMENTO
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+categoriasAtendimento(){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+
+        var idUsuario = localStorage.getItem("idUsuario");
+         
+        xhr.open('POST', app.urlApi+'categorias-atendimento',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("BUSCA DAS CATEGORIAS DE ATENDIMENTO");
+              console.log(JSON.parse(xhr.responseText));
+              
+              var dados = JSON.parse(xhr.responseText);
+
+              // SALVAR AS CATEGORIAS NA MEMORIA
+              localStorage.setItem("categoiasAtendimento",JSON.stringify(dados));
+
+              $("#listaDeCategorias").html(`
+
+                  ${dados.categorias.map((n) => {
+
+                      if(n.relacao.length==0){
+
+                              return `
+                                  
+                                 <li>
+                                     <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso2(${n.id},'${n.titulo}')" title="${n.titulo}">
+                                      ${n.titulo} <img src="assets/images/right.svg" alt="Ver mais">
+                                     </a>
+                                  </li>
+
+                              `
+                       }
+
+                       }).join('')}
+
+              `);
+              
+
+            }else{
+              
+              console.log("SEM SUCESSO categoriasAtendimento()");
+              console.log(JSON.parse(xhr.responseText));
+              aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+
+
+}
+
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   ENVIAR O ATENDIMENTO
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+enviarAtendimento(){
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formularioNovoAtendimento').formSerialize();
+
+        var idUsuario = localStorage.getItem("idUsuario");
+        var nomeCompletoUsuario = localStorage.getItem("nomeCompletoUsuario");
+        var emailUsuario = localStorage.getItem("emailUsuario");
+        var celularUsuario = localStorage.getItem("celularUsuario");
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+
+        var idUsuario = localStorage.getItem("idUsuario");
+         
+        xhr.open('POST', app.urlApi+'enviar-atendimento',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     '&nomeCompletoUsuario='+nomeCompletoUsuario+ 
+                     '&emailUsuario='+emailUsuario+ 
+                     '&celularUsuario='+celularUsuario+ 
+                     '&dados='+dados+ 
+                     "&token="+app.token;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("RETORNO SALVAR ATENDIMENTO");
+              console.log(JSON.parse(xhr.responseText));
+              
+              var dados = JSON.parse(xhr.responseText);
+              aviso("Deu certo!","Você receberá em breve orçamentos vindos dos nossos parceiros!");
+              app.opcoesCarretamentoPerfilCliente();
+
+            }else{
+              
+              console.log("SEM SUCESSO enviarAtendimento()");
+              console.log(JSON.parse(xhr.responseText));
+              aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+}
 
 
 
@@ -310,18 +619,17 @@ class Models{
 *  ------------------------------------------------------------------------------------------------
 */
 payBoleto(){
-
       
         // CAPTURAR OS DADOS DO FORMULÁRIO
         var dados = $('#formPayBoleto').formSerialize();
 
         var idUsuario = localStorage.getItem("idUsuario");
 
-        var dadosUsuario = JSON.parse(localStorage.getItem("dadosUsuario"));
+        //var dadosUsuario = JSON.parse(localStorage.getItem("dadosUsuario"));
 
-        var nome = dadosUsuario.dados[0].nome;
-        var celular = dadosUsuario.dados[0].celular;
-        var email = dadosUsuario.dados[0].email;
+        var nome = localStorage.getItem("nomeCompletoUsuario");
+        var celular = localStorage.getItem("celularUsuario");
+        var email = localStorage.getItem("emailUsuario");
 
         console.log(nome);
         console.log(celular);
@@ -395,9 +703,9 @@ payCartaoDeCredito(){
 
         var dadosUsuario = JSON.parse(localStorage.getItem("dadosUsuario"));
 
-        var nome = dadosUsuario.dados[0].nome;
-        var celular = dadosUsuario.dados[0].celular;
-        var email = dadosUsuario.dados[0].email;
+        var nome = localStorage.getItem("nomeCompletoUsuario");
+        var celular = localStorage.getItem("celularUsuario");
+        var email = localStorage.getItem("emailUsuario");
 
         var pagtoCCNumero    = $("#pagtoCCNumero").val();
         pagtoCCNumero = pagtoCCNumero.replace("-","");

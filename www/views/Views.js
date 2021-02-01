@@ -87,7 +87,7 @@ class Views{
                      
                       <!-- BUSCA PRINCIPAL -->
                      <div class="input-group busca-principal">
-                        <input type="text" class="form-control" placeholder="Do que você está precisando hoje?" aria-label="Do que você está precisando hoje?" aria-describedby="busca-principal">
+                        <input type="text" class="form-control" onkeyup="app.filtrotabela();" id="filtroTabela" placeholder="Do que você está precisando hoje?" aria-label="Do que você está precisando hoje?" aria-describedby="busca-principal">
                         <div class="input-group-append">
                           <span class="input-group-text" id="busca-principal">
                             <img src="assets/images/search.svg" alt="Busca">
@@ -96,47 +96,17 @@ class Views{
                       </div>
                      <!-- BUSCA PRINCIPAL -->
 
-                     <h2>
+                     <h2 id="fraseDeAbertura">
                        Receba orçamentos de profissionais <b>qualificados</b> próximos a você!
                      </h2>
 
                      <nav>
-                       <ul>
-                         <li>
-                           <a href="#" title="Limpeza geral">
-                             Limpeza geral <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
+                       <ul id="listaDeCategorias">
+                         
+                         <li style="text-align:left;font-size:13px;">
+                            <img src="assets/images/loading.gif" alt="Carregando" style="width:17px;margin-right:5px;float:none;" /> Carregando categorias
                          </li>
-                         <li>
-                           <a href="#" title="Passadoria">
-                             Passadoria <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
-                         </li>
-                         <li>
-                           <a href="#" title="Lavagem">
-                             Lavagem <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
-                         </li>
-                         <li>
-                           <a href="#" title="Janelas">
-                             Janelas <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
-                         </li>
-                         <li>
-                           <a href="#" title="Organização">
-                             Organização <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
-                         </li>
-                         <li>
-                           <a href="#" title="Cozinha">
-                             Cozinha <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
-                         </li>
-                         <li>
-                           <a href="#" title="Quartos">
-                             Quartos <img src="assets/images/right.svg" alt="Ver mais">
-                           </a>
-                         </li>
+                         
                        </ul>
                      </nav>
 
@@ -151,6 +121,111 @@ class Views{
             $("footer").fadeOut(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
             $("header .menu-bar-toggle").fadeIn(500);
         
+    }
+
+
+    novoAtendimento(idCategoria,nomeCategoria){
+
+
+       this._content.html(`
+            
+               <div class="row view-dashboard novo-atendimento" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2 id="fraseDeAbertura">
+                       <a href="javascript:void(0)" onclick="app.opcoesCarretamentoPerfilCliente();" title="Cancelar">
+                            <img src="assets/images/voltar-views.svg" alt="Cancelar" />
+                       </a>
+                       
+                       Detalhes sobre o que precisa:
+                       <small>
+                       Mais algumas informações para o seu orçamento vir completo
+                       </small>
+                     </h2>
+
+                     <form method="post" id="formularioNovoAtendimento" action="javascript:void(0)" onsubmit="app.enviarAtendimento()">
+
+                            <div class="form-group resumo-usuario">
+                              <label>Seus dados:</label>
+                              <p>
+                                ${localStorage.getItem("nomeCompletoUsuario")}<br>
+                                ${localStorage.getItem("emailUsuario")}<br>
+                                ${localStorage.getItem("celularUsuario")}
+                              </p>
+
+                              <label>Tipo de serviço</label>
+                              <p>
+                                ${nomeCategoria}
+                              </p>
+
+                            </div>
+
+                          
+
+                            <div class="caixa-branca">
+                                    <div class="form-group">
+                                      <label>Título do seu anúncio</label>
+                                      <input type="text" class="form-control" name="titulo" placeholder="título do seu anúncio" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Descreva em poucas palavras o que você precisa:</label>
+                                      <textarea rows="4" class="form-control" name="descricao" placeholder="Digite nesse campo"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Região do atendimento</label>
+                                      <input type="text" class="form-control" name="regiao" placeholder="Exemplo: região de Osasco" />
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Para quando precisa?</label>
+                                      <input type="text" class="form-control" name="quando" placeholder="Exemplo: até sexta-feira" />
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>O prestador de serviço precisa de algum requisito especial?</label>
+                                      <input type="text" class="form-control" name="requisitos" placeholder="Exemplo: inglês fluente" />
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Como prefere ser contatado(a)?</label>
+                                        <select class="form-control" required name="formacontato">
+                                          <option value="">selecione uma opção</option>
+                                          <option value="Todas">Ligação / WhatsApp / E-mail</option>
+                                          <option value="Ligação">Apenas Ligação ou WhatsApp</option>
+                                          <option value="Whatsapp">Apenas WhatsApp</option>
+                                          <option value="E-mail">Apenas E-mail</option>
+                                        </select>
+                                    </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top:30px;">
+                              <button type="submit" class="btn btn-primary">Enviar informações</button>
+                            </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0)" style="padding-top: 7px;" onclick="app.opcoesCarretamentoPerfilCliente();" title="Cancelar" class="btn btn-default">
+                                    Cancelar
+                                </a>
+                            </div>
+
+                     </form>
+
+                     <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
     }
 
 
@@ -361,6 +436,124 @@ class Views{
             $("header .menu-bar-toggle").fadeIn(500);
         
     }
+
+
+
+
+
+
+
+
+
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   EDITAR PERFIL USUARIO LOGADO
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+    editarPerfil(){
+
+       $(".sidemenu nav ul li").removeClass("ativo");
+       this._content.removeClass("fundo-view-principal");
+       
+       this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-editarPerfil view-campos" view-name="view-editarPerfil">
+
+                      <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <div class="area-formulario">
+
+                                    <h3>Editar seus dados</h3>
+
+                                    <div class="placeholder">
+
+                                        <!-- EMPTY STATE -->
+                                        <div class="linear-background">
+                                            <div class="inter-draw"></div>
+                                            <div class="inter-crop"></div>
+                                            <div class="inter-right--top"></div>
+                                            <div class="inter-right--bottom"></div>
+                                        </div>
+                                        <!-- EMPTY STATE -->
+                                        <!-- EMPTY STATE -->
+                                        <div class="linear-background">
+                                            <div class="inter-draw"></div>
+                                            <div class="inter-crop"></div>
+                                            <div class="inter-right--top"></div>
+                                            <div class="inter-right--bottom"></div>
+                                        </div>
+                                        <!-- EMPTY STATE -->
+                                        <!-- EMPTY STATE -->
+                                        <div class="linear-background">
+                                            <div class="inter-draw"></div>
+                                            <div class="inter-crop"></div>
+                                            <div class="inter-right--top"></div>
+                                            <div class="inter-right--bottom"></div>
+                                        </div>
+                                        <!-- EMPTY STATE -->
+
+                                    </div>
+
+                                    <div class="form">
+                                         
+                                         <form id="formEditarPerfil" method="post" action="javascript:void(0)" onsubmit="app.procEditarPerfil(event)">
+
+                                            <input type="hidden" name="editarPerfilIdUsuario" value="${localStorage.getItem("idUsuario")}" />
+                                            
+                                            <div class="form-group">
+                                               <label>Nome</label>
+                                               <input type="text" class="form-control" name="editarPerfilNome" id="editarPerfilNome" placeholder="Seu nome" required />
+                                            </div>
+
+                                            <div class="form-group">
+                                               <label>E-mail</label>
+                                               <input type="email" class="form-control" name="editarPerfilEmail" id="editarPerfilEmail" placeholder="E-mail de acesso" required />
+                                            </div>
+
+                                            <div class="form-group">
+                                               <label>Celular</label>
+                                               <input type="text" class="form-control" name="editarPerfilCelular" id="editarPerfilCelular" placeholder="DDD + número" required />
+                                            </div>
+
+                                            <div class="form-group">
+                                               <label>Alterar senha</label>
+                                               <input type="password" class="form-control" name="editarPerfilSenha" id="editarPerfilSenha" placeholder="Senha de acesso" />
+                                            </div>
+
+                                            <div class="form-group">
+                                               <button type="submit" class="btn btn-primary" id="btnEditar">Atualizar</button>
+                                            </div>
+
+                                         </form>
+
+                                    </div>
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+    }
+
+
+
+
+
+
 
     viewComprarChaves(){
              
@@ -1785,13 +1978,13 @@ class Views{
                             </a>
                           </div>
 
-                       <!--
+                       
                          <div class="form-group link-apoio text-center">
-                            <a href="javascript:void(0)" onclick="app.cadastro()" title="Criar uma conta">
-                                Criar uma conta
+                            <a href="javascript:void(0)" onclick="app.initApp()" title="Criar uma conta">
+                                Cancelar
                             </a>
                          </div>
-                       -->
+                       
                      
 
                   </div>
@@ -1841,14 +2034,13 @@ class Views{
                             <a href="javascript:void(0)" onclick="app.esqueciMinhaSenha()" title="Esqueci minha senha">
                                 Esqueci minha senha
                             </a>
-                          </div>
-                     <!--
+                       </div>
+                      
                        <div class="form-group link-apoio text-center">
-                            <a href="javascript:void(0)" onclick="app.cadastro()" title="Criar uma conta">
-                                Criar uma conta
+                            <a href="javascript:void(0)" onclick="app.initApp()" title="Criar uma conta">
+                                Cancelar
                             </a>
                        </div>
-                     -->
 
                   </div>
                </div>
