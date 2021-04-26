@@ -57,10 +57,6 @@
     <plugin name="cordova-plugin-androidx" />
     <plugin name="cordova-plugin-androidx-adapter" />
 
-    <!-- LER O SMS RECEBIDO -->
-    <plugin name="SmsInboxPlugin" value="org.apache.cordova.plugin.SmsInboxPlugin" />
-
-
     
    <preference name="android-minSdkVersion" value="23" />
    <preference name="android-targetSdkVersion" value="29" />

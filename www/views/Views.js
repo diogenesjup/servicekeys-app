@@ -1978,11 +1978,6 @@ class Views{
             this.animarTransicao();
             app.helpers.carregarMascaras();
 
-            smsInboxPlugin.startReception (function(msg) {
-                aviso("Esse é o retorno da leitura das mensagens (SMS):",msg);
-            }, function() {
-                console.log("NÃO CONSEGUIMOS LER AS MENSAGENS");
-            });
 
     }
 
