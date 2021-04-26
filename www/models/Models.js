@@ -1725,7 +1725,7 @@ carregarProximaAula(){
 
   if(posicao==dadosCurso.aulas.length){
     app.detalheCurso();
-    aviso("Parabéns! Curso concluido","Você concluíu 100% do curso! Continue se aperfeiçoando e aprendendo novos conteúdos!");
+    aviso("Parabéns! Curso concluído","Você concluíu 100% do curso! Continue se aperfeiçoando e aprendendo novos conteúdos!");
   }
   
   // ALIMENTAR OS DETALHES DA AULA DO CURSO
