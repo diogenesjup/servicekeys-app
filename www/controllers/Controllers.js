@@ -142,10 +142,13 @@ class App {
         if(tipoPerfil=="cliente"){
 
             app.opcoesCarretamentoPerfilCliente();
+            localStorage.setItem("selecaoPerfil","cliente");
 
         }else{
 
             this.views.viewPrincipalProfissional();
+            this.models.orcamentosDisponiveis();
+            localStorage.setItem("selecaoPerfil","profissional");
 
         }
 
@@ -312,30 +315,77 @@ filtrotabela(){
     viewPrincipalProfissional(){
       
       this.views.viewPrincipalProfissional();
+      this.models.orcamentosDisponiveis();
 
     }
 
-    desbloqAnuncio(){
-       
-        confirmacao("Oops! Você não tem chaves suficiêntes","Quer enviar um orçamento para esse cliente? Compre agora um pacote de chaves para desbloquear essa e muitos outros anúncios!","app.comprarChaves()","Comprar");
+
+
+    servicosDesbloqueadosProfissional(){
+
+        this.views.servicosDesbloqueadosProfissional();
+        this.models.orcamentosDisponiveisDesbloqueados();
 
     }
+
+
+    // ALERTAS E MENSAGENS DE AVISO DO USUÁRIO
+    alertasProfissionais(){
+
+        this.views.alertasProfissionais();
+
+    }
+
+
+
+    desbloqAnuncio(anuncio,valorAnuncio){
+
+        var saldoUsuario = localStorage.getItem("saldoPrestadorServico");
+        
+        // SALVAR DETALHE DO ANÚNCIO
+        localStorage.setItem("anuncioHeranca",anuncio);
+
+        if(saldoUsuario<valorAnuncio){
+        
+            confirmacao("Oops! Você não tem chaves suficiêntes","Quer enviar um orçamento para esse cliente? Compre agora um pacote de chaves para desbloquear essa e muitos outros anúncios!","app.comprarChaves()","Comprar");
+        
+        }else{
+
+            confirmacao("Tem certeza que deseja desbloquear esse anúncio?",`Será debitado um valor de ${valorAnuncio} chaves do seu saldo <b>SERVICE KEYS</b>`,`app.views.viewDetalheAnuncio(${anuncio},5)`,"Desbloquear");
+
+        }
+        
+
+    }
+
+    resumoSaldoProfissional(){
+
+        this.views.resumoSaldoProfissional();
+
+    }
+
 
     comprarChaves(){
        
         this.views.viewComprarChaves();
+        this.models.pacoteChaves();
 
     }
 
     selecaoPacoteCompra(){
 
         // SELECIONAR A OPÇÃO ESCOLHIDA
-        var pacoteEscolhido = $('input[name=pacote]:checked', '#formPacoteSelecao').val()
+        var pacoteEscolhido = $('input[name=pacote]:checked', '#formPacoteSelecao').val();
 
         console.log("PACOTE ESCOLHIDO PELO USUÁRIO: "+pacoteEscolhido);
 
+        $("#btnComprarSelecionado").html("Carregando....");
+
+        // SELECIONAR O VALOR DE ACORDO COM A ESCOLHA
+        this.models.selecaoPacoteDeChaves(pacoteEscolhido);
+
         // DIRECIONAR PARA A TELA DE COMPRA DO PACOTE
-        this.views.paginaDeCmopra();
+        //this.views.paginaDeCmopra();
 
         // CARREGAR O PRECO DO PACOTE ESCOLHIDO
         //this.models.paginaDeCompra();
@@ -377,6 +427,7 @@ filtrotabela(){
     cursos(){
        
        this.views.cursos();
+       this.models.cursos();
 
     }
 
@@ -404,22 +455,44 @@ filtrotabela(){
 
     
     detalheCurso(idCurso){
-      
 
       this.views.detalheCurso(idCurso);
+      this.models.detalheCurso(idCurso);
 
 
     }
 
-    detalheAula(idAula){
+    iniciarCurso(){
        
-       this.views.detalheAula(idAula);
+       this.views.iniciarCurso();
+       this.models.iniciarCurso();
 
     }
 
-    concluirAula(idAula){
+    nextAula(){
 
-        this.views.concluirAula(idAula);
+        this.views.nextAula();
+        this.models.atualizarHistoricoAluno();
+
+    }
+
+    carregarProximaAula(){
+
+         var oQueFazer = localStorage.getItem("aulaHasTeste");
+
+         if(oQueFazer=="nao"){
+
+            this.views.iniciarCurso();
+            this.models.carregarProximaAula(); 
+
+         }else{
+
+            // DIRECIONAR O USUÁRIO PARA O TESTE
+            this.views.detalheTeste();
+
+         }
+
+           
 
     }
 
@@ -431,9 +504,11 @@ filtrotabela(){
     }
 
 
-    corrigirTeste(idTeste){
+    corrigirTeste(){
          
-         this.views.corrigirTeste(idTeste);
+         this.views.corrigirTeste();
+
+         
 
     }
 
@@ -448,6 +523,25 @@ filtrotabela(){
 
     }
 
+
+    configuracoes(){
+
+        this.views.configuracoes();
+
+    }
+    
+
+    configuracoesProfissionais(){
+
+         this.views.configuracoes();
+
+    }
+
+    duvidasESuporte(){
+
+        this.views.duvidasESuporte();
+        this.models.duvidasESuporte();
+    }
 
 
     /* ABRIR OU FECHAR O MENU CLIENTE */

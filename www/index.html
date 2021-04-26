@@ -115,19 +115,19 @@ ysyss
     <footer>
         <div class="row">
             <div class="col menu-1">
-                <a href="javascript:void(0)" title="view 1" onclick="app.viewPrincipalProfissional()">
+                <a href="javascript:void(0)" title="Home" onclick="app.viewPrincipalProfissional()">
                     <img src="assets/images/home.svg" alt="Home" />
                     Home
                 </a>
             </div>
             <div class="col menu-2">
-                <a href="javascript:void(0)" title="view 1" onclick="app.view2()">
+                <a href="javascript:void(0)" title="Serviços" onclick="app.servicosDesbloqueadosProfissional()">
                     <img src="assets/images/favicon.svg" alt="Meus Serviços" />
                     Serviços
                 </a>
             </div>
             <div class="col menu-3">
-                <a href="javascript:void(0)" title="view 1" onclick="app.view3()">
+                <a href="javascript:void(0)" title="Alertas" onclick="app.alertasProfissionais()">
                     <img src="assets/images/alertas.svg" alt="Alertas" />
                     Alertas
                 </a>
@@ -195,19 +195,27 @@ ysyss
               <!-- NAVEGAÇÃO PRINCIPAL -->
               <nav>
                 <ul>
+
+                  <li>
+                      <a href="javascript:void(0)" title="Voltar ao início" onclick="app.opcoesCarretamentoPerfilCliente(); app.abrirFecharMenuCliente();">
+                        Voltar ao início
+                      </a>
+                  </li>
                   
                   <li>
                       <a href="javascript:void(0)" title="Meu Perfil" onclick="app.editarPerfil(); app.abrirFecharMenuCliente();">
                         Meu Perfil
                       </a>
                   </li>
+
                   <li>
                       <a href="javascript:void(0)" title="Configurações">
                         Configurações
                       </a>
                   </li>
+
                   <li>
-                      <a href="javascript:void(0)" title="Dúvidas e suporte">
+                      <a href="javascript:void(0)" title="Dúvidas e suporte" onclick="app.duvidasESuporte(); app.abrirFecharMenuProfissional();">
                         Dúvidas e suporte
                       </a>
                   </li>
@@ -220,7 +228,7 @@ ysyss
                   </li>
 
                   <li>
-                      <a href="javascript:void(0)" title="Configurações" onclick="app.inicio(); app.abrirFecharMenuCliente();">
+                      <a href="javascript:void(0)" title="Configurações" onclick="app.configuracoes(); app.abrirFecharMenuCliente();">
                         Configurações
                       </a>
                   </li>
@@ -255,45 +263,53 @@ ysyss
                 <ul>
                   
                   <li>
-                      <a href="javascript:void(0)" title="Meu Perfil">
+                      <a href="javascript:void(0)" title="Meu Perfil" onclick="app.editarPerfil(); app.abrirFecharMenuProfissional();">
                         Meu Perfil
                       </a>
                   </li>
+
                   <li>
-                      <a href="javascript:void(0)" title="Meus Serviços">
-                        Meus Serviços
+                      <a href="javascript:void(0)" title="Orçamentos desbloqueados" onclick="app.servicosDesbloqueadosProfissional(); app.abrirFecharMenuProfissional();">
+                        Orçamentos desbloqueados
                       </a>
                   </li>
+
                   <li>
                       <a href="javascript:void(0)" onclick="app.cursos(); app.abrirFecharMenuProfissional();" title="Cursos & Treinamentos">
                         Cursos & Treinamentos
                       </a>
                   </li>
+
                   <li>
-                      <a href="javascript:void(0)" title="Comprar Chaves">
+                      <a href="javascript:void(0)" title="Comprar Chaves" onclick="app.comprarChaves(); app.abrirFecharMenuProfissional();">
                         Comprar Chaves
                       </a>
                   </li>
+
                   <li>
                       <a href="javascript:void(0)" title="Indique e ganhe" onclick="app.indiqueEGanhe(); app.abrirFecharMenuProfissional();">
                         Indique e ganhe
                       </a>
                   </li>
+
                   <li>
-                      <a href="javascript:void(0)" title="Configurações">
+                      <a href="javascript:void(0)" title="Configurações" onclick="app.configuracoesProfissionais(); app.abrirFecharMenuProfissional();">
                         Configurações
                       </a>
                   </li>
+
                   <li>
-                      <a href="javascript:void(0)" title="Dúvidas e suporte">
+                      <a href="javascript:void(0)" title="Dúvidas e suporte" onclick="app.duvidasESuporte(); app.abrirFecharMenuProfissional();">
                         Dúvidas e suporte
                       </a>
                   </li>
+
                   <li>
                       <a href="javascript:void(0)" title="Trocar tipo de Perfil" onclick="app.abrirFecharMenuProfissional(); app.inicio();">
                         Trocar tipo de Perfil
                       </a>
                   </li>
+
                   <li>
                     <a href="javascript:void(0)" onclick="app.abrirFecharMenuProfissional(); confirmacao('Tem certeza que deseja sair?','Você será deslogado','app.logoff()','Sair')" title="Sair">
                     Sair</a>

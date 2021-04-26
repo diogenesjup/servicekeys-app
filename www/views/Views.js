@@ -72,6 +72,9 @@ class Views{
   
     viewPrincipalCliente(){
 
+            $("footer").css("opacity",0);
+            $("section#content").css("height","calc(100% - 60px)");
+
             $("header .menu-bar-toggle").html(`
                  
                  <a href="javascript:void(0)" onclick="app.abrirFecharMenuCliente();" title="Abrir o menu">
@@ -160,12 +163,12 @@ class Views{
 
                             </div>
 
-                          
+                            <input type="hidden" name="primeiro" value="de tudo" />
 
                             <div class="caixa-branca">
                                     <div class="form-group">
                                       <label>Título do seu anúncio</label>
-                                      <input type="text" class="form-control" name="titulo" placeholder="título do seu anúncio" required />
+                                      <input type="text" class="form-control" id="titulo" name="titulo" placeholder="título do seu anúncio" required />
                                     </div>
 
                                     <div class="form-group">
@@ -232,11 +235,14 @@ class Views{
 
     viewPrincipalProfissional(){
 
+            $("footer").css("opacity",1);
+            $("section#content").css("height","calc(100% - 114px)");
+
             $("header .menu-bar-toggle").html(`
 
-                 <a class="saldo-atual" href="javascript:void(0)" title="Seu saldo">
+                 <a class="saldo-atual" href="javascript:void(0)" onclick="app.resumoSaldoProfissional()" title="Seu saldo">
                     
-                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> <span>00</span>
+                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> <span id="saldoAtualUsuarioHeader">${localStorage.getItem("saldoPrestadorServico")}</span>
 
                  </a>
                  
@@ -252,176 +258,18 @@ class Views{
                   <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
                      
                      <h2>
-                       Olá novamente,<br>Diogenes<br>
+                       Olá novamente,<br>${localStorage.getItem("nomeCompletoUsuario")}<br>
                        <small>Novos orçamentos da rede <br>SERVICE KEYS:</small>
                      </h2>
 
-                     <div class="loop-novos-servicos">
-                         
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-                         <div class="caixa-destaque-servicos">
-                           
-                             <div class="header-autor">
+                     <div class="loop-novos-servicos" id="listaDeOrcamentos">
 
-                                 <h3>
-                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
-                                    Diogenes Junior
-                                    <small>
-                                       <p>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                       </p>
-                                       Brasileiro, 30 anos - Osasco SP
-                                    </small>
-                                 </h3>
-
-                             </div>
-
-                             <br clear="both">
-
-                             <div class="body-autor">
-                                  <h4>Nome do serviço solicitado.</h4>
-                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
-                                  <p><b>São Paulo - 5.5Km</b></p>
-                             </div>
-
-                             <div class="footer-autor">
-                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
-                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
-                                  </a>
-                             </div>
-
-                         </div>
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-
-
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-                         <div class="caixa-destaque-servicos">
-                           
-                             <div class="header-autor">
-
-                                 <h3>
-                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
-                                    Diogenes Junior
-                                    <small>
-                                       <p>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                       </p>
-                                       Brasileiro, 30 anos - Osasco SP
-                                    </small>
-                                 </h3>
-
-                             </div>
-
-                             <br clear="both">
-
-                             <div class="body-autor">
-                                  <h4>Nome do serviço solicitado.</h4>
-                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
-                                  <p><b>São Paulo - 5.5Km</b></p>
-                             </div>
-
-                             <div class="footer-autor">
-                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
-                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
-                                  </a>
-                             </div>
-
-                         </div>
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-
-
-
-
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-                         <div class="caixa-destaque-servicos">
-                           
-                             <div class="header-autor">
-
-                                 <h3>
-                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
-                                    Diogenes Junior
-                                    <small>
-                                       <p>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                       </p>
-                                       Brasileiro, 30 anos - Osasco SP
-                                    </small>
-                                 </h3>
-
-                             </div>
-
-                             <br clear="both">
-
-                             <div class="body-autor">
-                                  <h4>Nome do serviço solicitado.</h4>
-                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
-                                  <p><b>São Paulo - 5.5Km</b></p>
-                             </div>
-
-                             <div class="footer-autor">
-                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
-                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
-                                  </a>
-                             </div>
-
-                         </div>
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-
-
-
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-                         <div class="caixa-destaque-servicos">
-                           
-                             <div class="header-autor">
-
-                                 <h3>
-                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
-                                    Diogenes Junior
-                                    <small>
-                                       <p>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                       </p>
-                                       Brasileiro, 30 anos - Osasco SP
-                                    </small>
-                                 </h3>
-
-                             </div>
-
-                             <br clear="both">
-
-                             <div class="body-autor">
-                                  <h4>Nome do serviço solicitado.</h4>
-                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
-                                  <p><b>São Paulo - 5.5Km</b></p>
-                             </div>
-
-                             <div class="footer-autor">
-                                  <a href="javascript:void(0)" onclick="app.desbloqAnuncio();" title="DESBLOQUEAR" class="btn btn-primary">
-                                      DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> 50</span>
-                                  </a>
-                             </div>
-
-                         </div>
-                         <!-- CAIXA DESTAQUE SERVIÇOS -->
-
-
-
+                            <p style="text-align:center;">
+                              <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                            </p>
+                            <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                              Carregando
+                            </p>
 
                      </div>
 
@@ -441,6 +289,154 @@ class Views{
 
 
 
+
+    // SERVIÇOS DESBLOQUEADOS DO PROFISSIONAL
+    servicosDesbloqueadosProfissional(){
+
+            $("footer").css("opacity",1);
+            $("section#content").css("height","calc(100% - 114px)");
+
+            $("header .menu-bar-toggle").html(`
+
+                 <a class="saldo-atual" href="javascript:void(0)" onclick="app.resumoSaldoProfissional()" title="Seu saldo">
+                    
+                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> <span id="saldoAtualUsuarioHeader">${localStorage.getItem("saldoPrestadorServico")}</span>
+
+                 </a>
+                 
+                 <a href="javascript:void(0)" onclick="app.abrirFecharMenuProfissional();" title="Abrir o menu">
+                   <img src="assets/images/menu-bar.svg" alt="Abrir o menu">
+                 </a>
+
+            `);
+
+            this._content.html(`
+            
+               <div class="row view-dashboard view-profissional" style="background:none !important" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                       Serviços<br>
+                       <small>Orçamentos que você já desbloqueou:</small>
+                     </h2>
+
+                     <div class="loop-novos-servicos" id="listaDeOrcamentos">
+
+                            <p style="text-align:center;">
+                              <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                            </p>
+                            <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                              Carregando
+                            </p>
+
+                     </div>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+            $("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+            $("header .menu-bar-toggle").fadeIn(500);
+        
+    }
+
+
+
+   
+    // SERVIÇOS DESBLOQUEADOS DO PROFISSIONAL
+    alertasProfissionais(){
+
+            $("footer").css("opacity",1);
+            $("section#content").css("height","calc(100% - 114px)");
+
+            $("header .menu-bar-toggle").html(`
+
+                 <a class="saldo-atual" href="javascript:void(0)" onclick="app.resumoSaldoProfissional()" title="Seu saldo">
+                    
+                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> <span id="saldoAtualUsuarioHeader">${localStorage.getItem("saldoPrestadorServico")}</span>
+
+                 </a>
+                 
+                 <a href="javascript:void(0)" onclick="app.abrirFecharMenuProfissional();" title="Abrir o menu">
+                   <img src="assets/images/menu-bar.svg" alt="Abrir o menu">
+                 </a>
+
+            `);
+
+            this._content.html(`
+            
+               <div class="row view-dashboard view-profissional" style="background:none !important" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                       Alertas<br>
+                       <small>Mensagens e avisos para você:</small>
+                     </h2>
+
+                     <div class="loop-novos-servicos" id="listaDeOrcamentos">
+
+                            <p style="text-align:center;">
+                                <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                            </p>
+
+                            <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                                Nenhum alerta ainda! Talvez em breve...
+                            </p>
+
+                     </div>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+            $("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+            $("header .menu-bar-toggle").fadeIn(500);
+        
+    }
+ 
+
+
+
+    resumoSaldoProfissional(){
+        
+            this._content.html(`
+            
+               <div class="row view-dashboard view-profissional" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                       Esse é o seu saldo atual: <img src="assets/images/saldo.svg" style="width:16px;margin-top:-3px;" /> ${localStorage.getItem("saldoPrestadorServico")}
+                     </h2>
+                     
+                     <p style="font-size: 13px;width:80%;margin-bottom:30px;">
+                       O saldo em chaves é o que você utiliza para desbloquear os orçamento dentro da plataforma. 
+                       Você pode comprar novos pacotes de chaves sempre que quiser:
+                     </p>
+
+                     <p style="font-size: 13px;width:80%;margin-bottom:30px;">
+                       Se você já fez uma compra, <b>pode demorar até 30 minutos</b> após a confirmação do pagamento para que seu saldo seja atualizado
+                     </p>
+
+                     <p>
+                        <a href="javascript:void(0)" onclick="app.comprarChaves();" style="padding-top:6px;" class="btn btn-primary" title="Comprar chaves">
+                          COMPRAR CHAVES
+                        </a>
+                     </p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+    }
 
 
 
@@ -557,7 +553,6 @@ class Views{
 
     viewComprarChaves(){
              
-
              this._content.html(`
             
                <div class="row view-comprar-chaves" view-name="view-2">
@@ -573,61 +568,24 @@ class Views{
                      
                      <form id="formPacoteSelecao" method="post" action="javascript:void(0)" onsubmit="app.selecaoPacoteCompra(event)">
 
+                           <div id="appendPacotes">
+
+                              <p style="text-align:center;">
+                                 <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                              </p>
+                              <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                                 Carregando pacotes
+                              </p>
+
+                           </div>
                            
-                           <!-- PACOTE -->
-                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="pacote" id="pacote1" value="1000" checked>
-                              <label class="form-check-label" for="pacote1">
-                                <img src="assets/images/simbolo.svg" alt="Comprar 1000 Chaves" />  
-                                1000 Chaves 
-                                <small>À vista por R$ 99,99</small>
-                                <span>
-                                  <d>ou em até 12X de</d>
-                                  R$ 9,99
-                                </span>
-                              </label>
-                           </div>
-                           <!-- PACOTE -->
 
-
-                           <!-- PACOTE -->
-                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="pacote" id="pacote2" value="5000">
-                              <label class="form-check-label" for="pacote2">
-                                <img src="assets/images/simbolo.svg" alt="Comprar 5000 Chaves" />  
-                                5000 Chaves 
-                                <small>À vista por R$ 199,99</small>
-                                <span>
-                                  <d>ou em até 12X de</d>
-                                  R$ 29,99
-                                </span>
-                              </label>
-                           </div>
-                           <!-- PACOTE -->
-
-
-                           <!-- PACOTE -->
-                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="pacote" id="pacote3" value="10000">
-                              <label class="form-check-label" for="pacote3">
-                                <img src="assets/images/simbolo.svg" alt="Comprar 10000 Chaves" />  
-                                10.000 Chaves 
-                                <small>À vista por R$ 399,99</small>
-                                <span>
-                                  <d>em até 12X de</d>
-                                  R$ 39,99
-                                </span>
-                              </label>
-                           </div>
-                           <!-- PACOTE -->
-
-                           
+                           <p>&nbsp;</p>
                            <div class="form-group">
-                              <button typw="submit" class="btn btn-primary">
+                              <button typw="submit" id="btnComprarSelecionado" class="btn btn-primary">
                                   COMPRAR SELECIONADO
                               </button> 
                            </div>
-
 
                      </form>
 
@@ -645,7 +603,6 @@ class Views{
 
     paginaDeCmopra(){
        
-
             this._content.html(`
             
                <div class="row view-comprar-chaves view-finalizar-comprar" view-name="view-2">
@@ -656,34 +613,15 @@ class Views{
                          <img src="assets/images/voltar-views.svg" alt="Voltar" />
                       </a> 
                       Comprar chaves</h2>
-                      <p>Você está comprando pacote de chaves</p>
+                      <p>Você está comprando um pacote de chaves</p>
 
-                           
-                           <!-- PACOTE ESCOLHIDO -->
-                           <div class="form-check" style="margin-top: 23px;margin-bottom: 56px;">
-                              <input class="form-check-input" type="radio" name="pacote" id="pacote1" value="1000" checked>
-                              <label class="form-check-label" for="pacote1">
-                                <img src="assets/images/simbolo.svg" alt="Comprar 1000 Chaves" />  
-                                1000 Chaves 
-                                <small>À vista por R$ 99,99</small>
-                                <span>
-                                  <d>ou em até 12X de</d>
-                                  R$ 9,99
-                                </span>
-                              </label>
-                           </div>
-                           <!-- PACOTE -->
+                           <div id="pacoteEscolhido"></div>
 
-
-                           
                            <h3 style="font-size:20px;">Como deseja realizar o pagamento?</h3>
                            <p>
                              Você pode realizar o pagamento através de cartão de crédito (liberação imediata) ou
                              através de boleto bancário (liberação de 1 a 3 dias úteis).
                            </p>
-
-
-                                 
 
                                  <!-- FORMAS DE PAGAMENTO -->
                                  <div class="formas-de-pagamento">
@@ -745,10 +683,6 @@ class Views{
                                                               <div class="col-12 form-group">
                                                                  <label>Parcelas</label>
                                                                  <select class="form-control" name="pagtoCCParcelas" id="pagtoCCParcelas">
-                                                                      <option value="1x">1x de R$ 99,00</option>
-                                                                      <option value="2x">2x de R$ 49,50</option>
-                                                                      <option value="3x">3x de R$ 33,00</option>
-                                                                      <option value="4x">4x de R$ 24,75</option>
                                                                  </select>
                                                               </div>
                                                           </div>
@@ -832,14 +766,10 @@ class Views{
                                  </div>
                                  <!-- FORMAS DE PAGAMENTO -->
 
-                                 
-
-
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
-
 
                   </div>
                </div>
@@ -910,10 +840,13 @@ class Views{
                                   <p style="text-align:center">Suas chaves serão liberadas meditante confirmação do pagamento do boleto.</p>
                                   <p style="text-align:center">
                                     Acesse seu boleto diretamente<br>
-                                    <a href="${dados.invoiceUrl}" title="clique para acessar o seu boleto" target="_system">
+                                    <a href="javascript:void(0)" onclick="abrirUrl('${dados.invoiceUrl}');" title="clique para acessar o seu boleto" target="_system">
                                        clicando nesse link
                                     </a>
                                   </p> 
+                                  <p>
+                                    Nós também enviamos um e-mail com o boleto.
+                                  </p>
 
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
@@ -980,17 +913,19 @@ class Views{
                                           Crédito de chaves comprado com sucesso
                                         </h2>
                                       
-                                        <p style="text-align:center">Suas chaves já estão disponíveis para uso.</p>
-                                        <p style="text-align:center">
-                                          Continuar para o desbloqueio da solicitação de orçamento:<br>
-                                          <a href="javascript:void(0)" onclick="app.views.viewDetalheAnuncio();" title="clique para acessar a solicitação">
-                                             confirmar o desbloqueio
-                                          </a>
-                                        </p>
+                                        <p style="text-align:center">Pode levar <b>até 30 minutos</b> para que as suas chaves fiquem disponíveis para uso.</p>
+                                        <!--
+                                          <p style="text-align:center">
+                                            Continuar para o desbloqueio da solicitação de orçamento:<br>
+                                            <a href="javascript:void(0)" onclick="app.views.viewDetalheAnuncio();" title="clique para acessar a solicitação">
+                                               confirmar o desbloqueio
+                                            </a>
+                                          </p>
+                                        -->
 
                                         <p style="text-align:center">
                                           Seu recido do pagamento:<br>
-                                          <a href="${urlRecibo}"  title="clique para acessar" target="_system">
+                                          <a href="javascript:void(0)" onclick="abrirUrl('${urlRecibo}');" title="clique para acessar" target="_system">
                                              clique para acessar
                                           </a>
                                         </p> 
@@ -1026,7 +961,6 @@ class Views{
                                   </h2>
                                   <p>&nbsp;</p>
 
-
                                  
                                  <!-- ABAS -->
                                  <div class="page-tabs">
@@ -1053,22 +987,27 @@ class Views{
                                                            
                                                             <ul id="loopCursosLista">
                                                                 
+                                                                <!--
+
                                                                 <li onclick="app.detalheCurso(1)">
                                                                    Nome do Curso
                                                                    <small>Breve resumo sobre o que o curso fala</small>
                                                                 </li>
 
-                                                                <li onclick="app.detalheCurso(2)">
-                                                                   Nome do Curso um pouco maior com mais de uma linha
-                                                                   <small>Breve resumo sobre o que o curso fala</small>
+                                                                -->
+
+                                                                <li style="background:none !important;font-weight:normal;box-shadow:none;">
+
+                                                                  <p style="text-align:center;">
+                                                                    <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                                                                  </p>
+                                                                  <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                                                                    Carregando
+                                                                  </p>
+
                                                                 </li>
 
-                                                                <li onclick="app.detalheCurso(3)">
-                                                                   Terceiro e último curso de exemplo
-                                                                   <small>Breve resumo sobre o que o curso fala, um pouco maior
-                                                                   que os demais, e aqui vamos forçar uma quebra de texto (truncate)
-                                                                    só para ver como funcionaria</small>
-                                                                </li>
+                                                                
 
                                                             </ul>
 
@@ -1086,17 +1025,27 @@ class Views{
                                                            
                                                            <nav>
                                                              
-                                                              <ul>
+                                                              <ul id="loopCursosListaEmAndamento">
                                                                   
-                                                                  <li onclick="app.detalheCurso(4)">
-                                                                     Nome do Curso em Andamento
-                                                                     <small>Breve resumo sobre o que o curso fala</small>
+                                                                  <!--
 
-                                                                     <div class="progress">
-                                                                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                                     </div>
+                                                                    <li onclick="app.detalheCurso(1)">
+                                                                       Nome do Curso
+                                                                       <small>Breve resumo sobre o que o curso fala</small>
+                                                                    </li>
 
-                                                                  </li>
+                                                                    -->
+
+                                                                    <li style="background:none !important;font-weight:normal;box-shadow:none;">
+
+                                                                        <p style="text-align:center;">
+                                                                          <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                                                                        </p>
+                                                                        <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                                                                          Carregando
+                                                                        </p>
+
+                                                                    </li>
 
                                                                  
 
@@ -1136,7 +1085,6 @@ class Views{
 
 
     detalheCurso(idDetalheCurso){
-
          
          this._content.html(`
             
@@ -1144,77 +1092,56 @@ class Views{
                   <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
                      
                                   <h2>
+                                     
                                      <a href="javascript:void(0)" title="Voltar" onclick="app.cursos();">
                                         <img src="assets/images/voltar-views.svg" alt="Voltar" />
                                      </a> 
+
                                      <small>Cursos & Treinamentos</small>
-                                     Nome do Curso de exemplo
+                                     <span id="nomeDoCurso">carregando</span>
+
                                   </h2>
 
-                                  <div class="progress">
-                                      <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">seu progresso: 25%</div>
+                                  <div class="barra-de-progresso-caixa">
                                   </div>
 
                                   <p>&nbsp;</p>
 
                                   <div class="metas-curso">
 
-                                      <p>Caros amigos, a competitividade nas transações comerciais promove a alavancagem das formas de ação. Todas estas questões, devidamente ponderadas, levantam dúvidas sobre se a percepção das dificuldades cumpre um papel essencial na formulação da gestão inovadora da qual fazemos parte.</p>
+                                      <div id="resumoCurso">carregando</div>
                                       <p>&nbsp;</p>
-
-
-                                      
+      
                                       <h3>Resumo do curso</h3>
 
                                       <nav class="destaque-cursos">
                                         <ul>
                                           <li>
-                                            <i class="fa fa-files-o"></i> Aulas <span>05 aulas</span>
+                                            <i class="fa fa-files-o"></i> Aulas <span id="totAulasCurso">carregando</span>
                                           </li>
-                                          <li>
-                                            <i class="fa fa-clock-o"></i> Duração <span>1 hora</span>
-                                          </li>
-                                          <li>
-                                             <i class="fa fa-level-up"></i> Nível <span>Intermediário</span>
-                                          </li>
+
+                                          <!--
+                                            <li>
+                                              <i class="fa fa-clock-o"></i> Duração <span>1 hora</span>
+                                            </li>
+                                            <li>
+                                               <i class="fa fa-level-up"></i> Nível <span>Intermediário</span>
+                                            </li>
+                                          -->
+
                                         </ul>
                                       </nav>
 
-                                      
                                       <h3>Conteúdo</h3>
                                       <nav class="destaque-cursos">
-                                        <ul>
-                                          
-                                          <li onclick="app.detalheAula(1)">
-                                            <i class="fa fa-play-circle"></i> Aula 01 - Título da Aula de exemplo
-                                            <small>Aqui um breve resumo da aula.</small>
-                                          </li>
 
-                                          <li onclick="app.detalheAula(1)">
-                                            <i class="fa fa-play-circle"></i> Aula 02 - Os exemplos continuam
-                                            <small>Aqui um breve resumo da aula.</small>
-                                          </li>
-
-                                          <li onclick="app.detalheAula(1)">
-                                            <i class="fa fa-play-circle"></i> Aula 03 - Título da Aula
-                                            <small>Aqui um breve resumo da aula.</small>
-                                          </li>
-
-                                          <li onclick="app.detalheAula(1)">
-                                            <i class="fa fa-play-circle"></i> Aula 04 - Título da Aula
-                                            <small>Aqui um breve resumo da aula.</small>
-                                          </li>
-
-                                          <li onclick="app.detalheTeste(1)">
-                                            <i class="fa fa-play-circle"></i> Aula 05 - Teste final de conclusão do curso
-                                            <small>Aqui um breve resumo sobre o que seria o teste.</small>
-                                          </li>
-                                          
+                                        <ul id="listaDasAulasResumo">
                                         </ul>
+
                                       </nav>
 
-                                      <div>
-                                          <a href="javascript:void(0)" onclick="app.detalheAula(1)" title="Fazer esse curso" class="btn btn-primary">
+                                      <div id="actionInitCurso">
+                                          <a href="javascript:void(0)" onclick="app.iniciarCurso()" title="Fazer esse curso" class="btn btn-primary">
                                               Fazer esse curso
                                           </a>
                                       </div>
@@ -1238,21 +1165,20 @@ class Views{
 
     }
 
-
-   detalheAula(idAula){
+   // INICIAR CURSO 
+   iniciarCurso(){
      
-       
        this._content.html(`
             
                <div class="row view-comprar-chaves cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
                   <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
                      
                                   <h2>
-                                     <a href="javascript:void(0)" title="Voltar para o início do curso" onclick="app.detalheCurso(1)">
+                                     <a href="javascript:void(0)" title="Voltar para o início do curso" id="voltarLinkDetalheCurso">
                                         <img src="assets/images/voltar-views.svg" alt="Voltar" />
                                      </a> 
-                                     <small>Nome do curso de exemplo</small>
-                                     01 - Aula de Exemplo
+                                     <small id="nomeDoCurso">Carregando</small>
+                                     <span id="nomeDaAulaAtual">Carregando</span>
                                   </h2>
 
                                   <p>&nbsp;</p>
@@ -1261,92 +1187,39 @@ class Views{
 
                                       <div id="feedbackAula"></div>
 
-                                      <div class="video-aula">
-                                          <iframe width="560" height="315" src="https://www.youtube.com/embed/CfWgbph-Mqw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                      <div class="video-aula" id="videoAula">
+                                          Carregando
                                       </div>
 
                                       <div class="conteudos-aula">
                                            <div class="accordion" id="topicos">
 
 
-                                                  <!-- TOPICO 1 -->
+                                                  <!-- CONTEUDO DA AULA -->
                                                   <div class="card">
                                                     <div class="card-header" id="pergunta1Header">
                                                       <h2 class="mb-0">
                                                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#pergunta1" aria-expanded="true" aria-controls="pergunta1">
-                                                          Tópico 1: Introdução
-                                                          <small>Resumo sobre o que fala essa sessão</small>
-                                                          <img src="assets/images/angle-down.svg" alt="Abrir esse tópico" />
+                                                          <span id="">Conteúdo da aula</span>
+                                                          <small>Clique para ver o conteúdo</small>
+                                                          <img src="assets/images/angle-down.svg" alt="Abrir conteúdo dessa aula" />
                                                         </button>
                                                       </h2>
                                                     </div>
 
                                                     <div id="pergunta1" class="collapse" aria-labelledby="pergunta1" data-parent="#topicos">
-                                                      <div class="card-body">
-                                                         <p>
-                                                            As experiências acumuladas demonstram que o novo modelo estrutural aqui preconizado assume importantes posições no estabelecimento dos paradigmas corporativos. Desta maneira, a consulta aos diversos militantes faz parte de um processo de gerenciamento das novas proposições.
-                                                         </p>
+                                                      <div class="card-body" id="conteudoEmSiDaAula">
                                                       </div>
                                                     </div>
                                                   </div>
-                                                  <!-- TOPICO 1 -->
-
-
-
-                                                  <!-- TOPICO 2 -->
-                                                  <div class="card">
-                                                    <div class="card-header" id="pergunta2Header">
-                                                      <h2 class="mb-0">
-                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#pergunta2" aria-expanded="true" aria-controls="pergunta2">
-                                                          Tópico 2: Conteúdo
-                                                          <small>Resumo sobre o que fala essa sessão</small>
-                                                          <img src="assets/images/angle-down.svg" alt="Abrir esse tópico" />
-                                                        </button>
-                                                      </h2>
-                                                    </div>
-
-                                                    <div id="pergunta2" class="collapse" aria-labelledby="pergunta2" data-parent="#topicos">
-                                                      <div class="card-body">
-                                                         <p>
-                                                            As experiências acumuladas demonstram que o novo modelo estrutural aqui preconizado assume importantes posições no estabelecimento dos paradigmas corporativos. Desta maneira, a consulta aos diversos militantes faz parte de um processo de gerenciamento das novas proposições.
-                                                         </p>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <!-- TOPICO 2 -->
-
-
-
-                                                  <!-- TOPICO 3 -->
-                                                  <div class="card">
-                                                    <div class="card-header" id="pergunta3Header">
-                                                      <h2 class="mb-0">
-                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#pergunta3" aria-expanded="true" aria-controls="pergunta3">
-                                                          Tópico 3: Resumo
-                                                          <small>Resumo sobre o que fala essa sessão</small>
-                                                          <img src="assets/images/angle-down.svg" alt="Abrir esse tópico" />
-                                                        </button>
-                                                      </h2>
-                                                    </div>
-
-                                                    <div id="pergunta3" class="collapse" aria-labelledby="pergunta3" data-parent="#topicos">
-                                                      <div class="card-body">
-                                                         <img src="assets/images/topico1.jpg" alt="" />
-                                                         <p>
-                                                            As experiências acumuladas demonstram que o novo modelo estrutural aqui preconizado assume importantes posições no estabelecimento dos paradigmas corporativos. Desta maneira, a consulta aos diversos militantes faz parte de um processo de gerenciamento das novas proposições.
-                                                         </p>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <!-- TOPICO 3 -->
-
+                                                  <!-- CONTEUDO DA AULA -->
 
 
                                            </div>
                                       </div>
 
                                       <div>
-                                          <a href="javascript:void(0)" onclick="app.concluirAula(1)" title="Concluir essa aula" class="btn btn-primary">
+                                          <a href="javascript:void(0)" onclick="app.nextAula()" title="Concluir essa aula" class="btn btn-primary">
                                               Concluir essa aula
                                           </a>
                                       </div>
@@ -1377,7 +1250,7 @@ class Views{
 
 
 
-   concluirAula(idAula){
+   nextAula(){
                  
                  // INFORMAR O USUÁRIO SOBRE A CONCLUSÃO DA AULA
                  $("#feedbackAula").html(`
@@ -1387,8 +1260,8 @@ class Views{
                                                    <b>Parabéns! Aula concluída com sucesso</b>
                                                 </p>
                                                 <p>
-                                                   <a href="javascript:void(0)" onclick="app.detalheTeste(1)" class="btn btn-primary">
-                                                       Próxima aula <i class="fa fa-angle-right"></i>
+                                                   <a href="javascript:void(0)" onclick="app.carregarProximaAula()" class="btn btn-primary">
+                                                       Próximo <i class="fa fa-angle-right"></i>
                                                    </a>
                                                 </p>
                                             </div>
@@ -1403,19 +1276,21 @@ class Views{
    
 
    detalheTeste(){
+
+        var dadosCurso = JSON.parse(localStorage.getItem("dadosCurso"));
+        var posicao    = localStorage.getItem("posicaoCurso");
      
-        
         this._content.html(`
             
                <div class="row cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
                   <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
                      
                                   <h2>
-                                     <a href="javascript:void(0)" title="Voltar para o início do curso" onclick="app.detalheCurso(1)">
+                                     <a href="javascript:void(0)" title="Voltar para o início do curso" onclick="app.iniciarCurso()">
                                         <img src="assets/images/voltar-views.svg" alt="Voltar" />
                                      </a> 
-                                     <small>Nome do curso de exemplo</small>
-                                     02 - Testes da Aula
+                                     <small>${dadosCurso.curso.titulo}</small>
+                                     Testes da aula: ${dadosCurso.aulas[posicao].nome_da_aula}
                                   </h2>
 
                                   <p>&nbsp;</p>
@@ -1426,184 +1301,15 @@ class Views{
 
                                     
                                       <div class="conteudos-aula conteudos-testes">
-                                          
-                                          <!-- PERGUNTA -->
-                                          <div class="pergunta">
-                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
-                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
-                                              <div class="sessao-alternativas caixa-testes">
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1" value="=CONST.SE(C2:C13;>=9)" checked>
-                                                      <label class="form-check-label" for="alt1">
-                                                        Alternativa 1
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt2">
-                                                        Alternativa 2
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt3">
-                                                        Alternativa 3 de exemplo
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt4">
-                                                        Alternativa 4
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="feedback-alternativas" id="fa1"></div>
-
-                                              </div>
-                                          </div>
-                                          <!-- PERGUNTA -->
-
-
-
-                                          <!-- PERGUNTA -->
-                                          <div class="pergunta">
-                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
-                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
-                                              <div class="sessao-alternativas caixa-testes">
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1b" value="=CONST.SE(C2:C13;>=9)" checked>
-                                                      <label class="form-check-label" for="alt1b">
-                                                        Alternativa 1
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2b" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt2b">
-                                                        Alternativa 2
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3b" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt3b">
-                                                        Alternativa 3 de exemplo
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4b" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt4b">
-                                                        Alternativa 4
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="feedback-alternativas" id="fa2"></div>
-
-                                              </div>
-                                          </div>
-                                          <!-- PERGUNTA -->
-
-
-
-                                          <!-- PERGUNTA -->
-                                          <div class="pergunta">
-                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
-                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
-                                              <div class="sessao-alternativas caixa-testes">
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1v" value="=CONST.SE(C2:C13;>=9)" checked>
-                                                      <label class="form-check-label" for="alt1v">
-                                                        Alternativa 1
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2v" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt2v">
-                                                        Alternativa 2
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3v" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt3v">
-                                                        Alternativa 3 de exemplo
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4d" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt4d">
-                                                        Alternativa 4
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="feedback-alternativas" id="fa3"></div>
-
-                                              </div>
-                                          </div>
-                                          <!-- PERGUNTA -->
-
-
-
-                                          <!-- PERGUNTA -->
-                                          <div class="pergunta">
-                                              <h3>Considere as informações a seguir e resposda o questionário:</h3>
-                                              <p>Todavia, a valorização de fatores subjetivos deve passar por modificações independentemente do orçamento setorial.</p>
-                                              <div class="sessao-alternativas caixa-testes">
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt1e" value="=CONST.SE(C2:C13;>=9)" checked>
-                                                      <label class="form-check-label" for="alt1e">
-                                                        Alternativa 1
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt2e" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt2e">
-                                                        Alternativa 2
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt3e" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt3e">
-                                                        Alternativa 3 de exemplo
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="form-check">
-                                                      <input class="form-check-input" type="radio" name="pergunta6" id="alt4e" value="=CONST.SE(C2:C13;>=9)">
-                                                      <label class="form-check-label" for="alt4e">
-                                                        Alternativa 4
-                                                      </label>
-                                                   </div>
-
-                                                   <div class="feedback-alternativas" id="fa4"></div>
-
-                                              </div>
-                                          </div>
-                                          <!-- PERGUNTA -->
-                                           
                                       </div>
 
                                       <div>
-                                          <a href="javascript:void(0)" onclick="app.corrigirTeste(1)" title="Corrigir teste" class="btn btn-primary">
+                                          <a href="javascript:void(0)" onclick="app.corrigirTeste()" title="Corrigir teste" class="btn btn-primary">
                                               Corrigir teste
                                           </a>
                                       </div>
-                                      
 
                                   </div>
-
 
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
@@ -1614,6 +1320,77 @@ class Views{
                </div>
             
             `);
+
+            var imgPergunta = "";
+            var contador = 0;
+            var contador2 = 0;
+            var checked = "";
+            
+            // ALIMENTAR AS AULAS
+            $(".conteudos-testes").html(`
+
+                  ${dadosCurso.aulas[posicao].conteudo_teste.map((n) => {
+
+                              // PREPARAR A IMAGEM DA PERGUNTA
+                              if(n.imagem_da_pergunta!=false && n.imagem_da_pergunta!=null){
+                                imgPergunta = `<img src="${n.imagem_da_pergunta}" style="width:100%;height:auto;" />`;
+                              }else{
+                                imgPergunta = "";
+                              }
+
+                              contador++;
+                              contador2 = 0;
+
+                              //console.log(n.alternativas);
+
+
+                              return `
+                                  
+                                          <!-- PERGUNTA -->
+                                          <div class="pergunta">
+                                              <h3 style="font-weight:normal;">${n.titulo_da_pergunta}</h3>
+                                              <p>
+                                                ${imgPergunta}
+                                              </p>
+                                              <div class="sessao-alternativas caixa-testes">
+
+                                                   ${n.alternativas.map((m) => {
+
+                                                              //console.log(m);
+
+                                                              contador2++;
+
+                                                              if(contador2==1){
+                                                                checked = "checked";
+                                                              }else{
+                                                                checked = "";
+                                                              }
+
+                                                              return `
+                                                                  
+                                                                 <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="pergunta${contador}" id="pergunta${contador}alt${contador2}" data-seletor="${contador}" data-correcao="${m.correta_ou_incorreta}" data-peso="${n.peso_da_pergunta}" value="${m.texto_da_alternativa}" >
+                                                                    <label class="form-check-label" for="pergunta${contador}alt${contador2}">
+                                                                      ${m.texto_da_alternativa}
+                                                                    </label>
+                                                                 </div>
+
+                                                              `
+                                                    
+                                                       }).join('')} 
+
+                                                   <div class="feedback-alternativas" id="fa${contador}"></div>
+
+                                              </div>
+                                          </div>
+                                          <!-- PERGUNTA -->
+
+                              `
+                       
+                       }).join('')}
+
+              `);
+
 
             this.animarTransicao();
             
@@ -1627,10 +1404,117 @@ class Views{
 
 
 
-   corrigirTeste(idTeste){
+   corrigirTeste(){
 
 
-            // INFORMAR O USUÁRIO SOBRE A CONCLUSÃO DA AULA
+           var dadosCurso = JSON.parse(localStorage.getItem("dadosCurso"));
+           var posicao    = localStorage.getItem("posicaoCurso"); 
+
+           $("#feedbackAula").html(`
+
+                <div style="margin-bottom: 28px;padding: 12px;background: #f2f2f2">
+
+                    <p style="text-align:center;">
+                      <img src="assets/images/loading.gif" alt="Analisando suas respostas... Aguarde" style="width: 15px;height:auto;" />
+                    </p>
+
+                    <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                      Analisando suas respostas... Aguarde
+                    </p>
+
+                </div>
+
+            `);
+
+           var totalAcertos = 0;
+           var nota_minima_para_aprovacao = dadosCurso.aulas[posicao].nota_minima_para_aprovacao;
+           
+           // PERCORRER AS RESPOSTAS CORRETAS            
+           $(`input[data-correcao='Correta']:checked`).each(function(){
+
+             totalAcertos = parseInt(totalAcertos) + parseInt($(this).attr("data-peso"));
+
+             // FEEDBACK PARA O USUÁRIO
+             $(`#fa${$(this).attr("data-seletor")}`).html(`
+
+                 <div class="alert alert-success" role="alert">
+                        <p>
+                            Resposta correta!
+                        </p>                        
+                 </div> 
+
+             `);
+
+           });
+
+
+           // PERCORRER AS RESPOSTAS INCORRETAS PARA AVISAR O USUÁRIO       
+           $(`input[data-correcao='Incorreta']:checked`).each(function(){
+
+             // FEEDBACK PARA O USUÁRIO
+             $(`#fa${$(this).attr("data-seletor")}`).html(`
+
+                 <div class="alert alert-danger" role="alert">
+                      <p>
+                          Resposta incorreta! Tente novamente, ou faça novamente as aulas anteriores.
+                      </p>
+                 </div> 
+
+             `);
+
+           });
+
+
+           //FEEDBACK GERAL SOBRE O TESTE
+           setTimeout(function(){ 
+
+              if(totalAcertos>=nota_minima_para_aprovacao){
+
+                // MARCAR QUE O TESTE JÁ FOI CONCLUÍDO
+                localStorage.setItem("aulaHasTeste","nao");
+
+                $("#feedbackAula").html(`
+       
+                          <div class="alert alert-success" role="alert">
+                              <p>
+                                  <b>Parabéns! Teste concluído com sucesso e sua nota foi ${totalAcertos}
+                                  <small style="display:block;">O necessário para aprovação era ${nota_minima_para_aprovacao}</small> 
+                                  </b>
+                              </p>
+                              <p>
+                                  <a href="javascript:void(0)" onclick="app.carregarProximaAula();" class="btn btn-primary">
+                                      Próximo <i class="fa fa-angle-right"></i>
+                                  </a>
+                              </p>
+                          </div>
+
+                `);
+
+              }else{
+
+                $("#feedbackAula").html(`
+       
+                          <div class="alert alert-success" role="alert">
+                              <p>
+                                  <b>Oops! Você quase conseguiu. Sua nota foi ${totalAcertos}
+                                  <small style="display:block;">O necessário para aprovação era ${nota_minima_para_aprovacao}</small> 
+                                  </b>
+                              </p>
+                              <p>
+                                  <a href="javascript:void(0)" onclick="app.views.detalheTeste();" class="btn btn-primary">
+                                      Fazer o teste novamente <i class="fa fa-angle-right"></i>
+                                  </a>
+                              </p>
+                          </div>
+
+                `);
+
+              }
+
+           }, 2000);
+
+
+           /*
             $("#feedbackAula").html(`
        
                                            <div class="alert alert-success" role="alert">
@@ -1647,7 +1531,7 @@ class Views{
             `);
 
 
-            // INFORMAR O USUÁRIO SOBRE A CORREÇÃO DO TESTE
+          
             $("#fa1").html(`
        
                                            <div class="alert alert-success" role="alert">
@@ -1692,6 +1576,8 @@ class Views{
 
             `);
 
+            */
+
 
             // FORÇAR O SCROLL PARA O TOPO
             var objDiv = document.getElementById("content");
@@ -1731,21 +1617,20 @@ class Views{
 
                                   <div class="social">
                                       
-                                      <a href="#" title="Compartilhar por e-mail">
-                                         <i class="fa fa-envelope"></i>
+                                      <a href="javascript:void(0)" onclick="abrirUrl('https://twitter.com/intent/tweet?text=Conheça o aplicativo Service Keys https://servicekeys.com.br')" title="Compartilhar no Twitter">
+                                         <i class="fa fa-twitter"></i>
                                       </a>
 
-                                      <a href="#" title="Compartilhar por whatsapp">
+                                      <a href="javascript:void(0)" onclick="abrirUrl('https://wa.me/?text=Conheça o aplicativo Service Keys https://servicekeys.com.br')" title="Compartilhar por WhatsApp">
                                          <i class="fa fa-whatsapp"></i>
                                       </a>
 
-                                      <a href="#" title="Compartilhar no Facebook">
+                                      <a href="javascript:void(0)" onclick="abrirUrl('https://www.facebook.com/sharer/sharer.php?u=https://servicekeys.com.br')" title="Compartilhar no Facebook">
                                          <i class="fa fa-facebook"></i>
                                       </a>
 
                                   </div>
                                   
-
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
@@ -1760,10 +1645,11 @@ class Views{
 
     }
 
+    
 
 
+    viewDetalheAnuncio(idAnuncio,acao){
 
-    viewDetalheAnuncio(){
 
       this._content.html(`
             
@@ -1775,6 +1661,7 @@ class Views{
                          <img src="assets/images/voltar-views.svg" alt="Voltar" />
                       </a> 
                       Detalhe orçamento</h2>
+
                      <p class="sub">Parabéns! Você já desbloqueou esse orçamento!</p>
 
                      <div class="loop-novos-servicos">
@@ -1785,8 +1672,8 @@ class Views{
                              <div class="header-autor">
 
                                  <h3>
-                                    <img src="assets/images/foto-perfil.png" alt="Foto Perfil" />
-                                    Diogenes Junior
+                                    <img src="assets/images/perfil.png" alt="Foto Perfil" />
+                                    <span id="nomeCliente"></span>
                                     <small>
                                        <p>
                                           <i class="fa fa-star" aria-hidden="true"></i>
@@ -1795,7 +1682,7 @@ class Views{
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                        </p>
-                                       Brasileiro, 30 anos - Osasco SP
+                                       <span id="subTituloAnuncio"></span>
                                     </small>
                                  </h3>
 
@@ -1804,19 +1691,21 @@ class Views{
                              <br clear="both">
 
                              <div class="body-autor">
-                                  <h4>Nome do serviço solicitado.</h4>
-                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
-                                  <p>Preciso de tal serviço com tal característica ou qualquer outra informação relevante sobre o serviço que estou procurando.</p>
-                                  <p><b>São Paulo - 5.5Km</b></p>
+                                  <h4>Carregando...</h4>
+                                  <p id="descAnuncio"></p>
+                                  <p id="localAnuncio"></p>
+                                  <p id="requisitosAnuncio"></p>
+                                  <p id="dataAnuncio"></p>
+                                  <p id="formaContaAnuncio"></p>
                              </div>
 
                              <div class="footer-autor">
                                
                                <h2>
-                                  <img src="assets/images/whatsapp.svg" alt="Whatsapp" /> (11) 9 4502-7877
+                                  <img src="assets/images/whatsapp.svg" alt="Whatsapp" /> <span id="contatoTelefone"></span>
                                </h2>
                                <h2>
-                                   <img src="assets/images/envelope.svg" alt="E-mail" /> diogenesjunior.ti@gmail.com
+                                   <img src="assets/images/envelope.svg" alt="E-mail" /> <span id="contatoEmail"></span>
                                </h2>
 
                              </div>
@@ -1826,21 +1715,23 @@ class Views{
                          <div class="actions-contato">
                           
                                 <p>
-                                   <a href="tel:11945027877" target="_system" title="Ligar no telefone" class="btn btn-default">
+                                   <a href="" id="actionLigacao" target="_system" title="Ligar no telefone" class="btn btn-default">
                                       Ligar no telefone
                                    </a>
                                 </p>
                                 <p>
-                                   <a href="https://api.whatsapp.com/send?l=pt_BR&phone=5511945027877" target="_system" title="Whatsapp" class="btn btn-default">
+                                   <a href="" id="actionWhatsApp" target="_system" title="Whatsapp" class="btn btn-default">
                                       Whatsapp
                                    </a>
                                 </p>
-                           
+                                
+                                <!--
                                 <p>
                                     <a href="javascript:void(0)" onclick="app.finalizarServico()" title="Serviço concluído" class="btn btn-default">
-                                      Serviço concluído!
+                                      Eu já realizei esse serviço para o cliente!
                                    </a>
                                 </p>
+                                -->
                             
                          </div>
 
@@ -1860,8 +1751,97 @@ class Views{
             `);
 
             this.animarTransicao();
+
+            if(acao==5){
+              aviso("Parabéns! Orçamento desbloqueado","Agora você pode ver todas as informações desse orçamento. Ele também ficará salvo no meu <b>Serviços</b> na barra inferior do aplicativo.");
+            }
+
+            app.models.carregarDetalheAtendimento(idAnuncio,acao);
        
     }
+
+
+
+
+    configuracoes(){
+       
+       this._content.html(`
+            
+               <div class="row view-comprar-chaves cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                  <h2>
+                                     Configurações
+                                  </h2>
+
+                                  <p>
+                                    Altere e customize as opções do aplicativo para que façam mais sentido para o seu uso.
+                                  </p>
+                                  
+
+
+
+                                  
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+    }
+
+
+    duvidasESuporte(){
+
+      this._content.html(`
+            
+               <div class="row view-comprar-chaves cursos-e-treinamentos cursos-e-treinamentos-aula" view-name="view-2">
+                  <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                                  <h2>
+                                     Dúvidas e suporte
+                                  </h2>
+
+                                  <p>
+                                    Tem alguma dúvida sobre como funciona a plataforma? Veja algumas perguntas e respostas que podem ser úteis. Você também
+                                    pode enviar um e-mail para <b>suporte@servicekeys.com.br</b>
+                                  </p>
+                                  
+
+                                  <div id="itensSuporte">
+
+                                      <p style="text-align:center;">
+                                        <img src="assets/images/loading.gif" alt="Carregando" style="width: 15px;height:auto;" />
+                                      </p>
+                                      <p style="text-align:center;color:#747474;font-size:13px;margin-top:-9px;">
+                                        Carregando
+                                      </p>
+
+                                  </div>
+
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+                                 <p>&nbsp;</p>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+    }
+
+
 
     view2(){
 
@@ -1997,6 +1977,12 @@ class Views{
 
             this.animarTransicao();
             app.helpers.carregarMascaras();
+
+            smsInboxPlugin.startReception (function(msg) {
+                aviso("Esse é o retorno da leitura das mensagens (SMS):",msg);
+            }, function() {
+                console.log("NÃO CONSEGUIMOS LER AS MENSAGENS");
+            });
 
     }
 

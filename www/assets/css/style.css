@@ -593,6 +593,7 @@ section#content .view-3{
     margin-right: 14px;
     margin-bottom: 8px;
     margin-top: -4px;
+    border-radius: 100%;
 }
 
 .loop-novos-servicos .caixa-destaque-servicos h3 small{
@@ -1291,13 +1292,17 @@ section#content .view-3{
    line-height: 19px;
    padding-top: 12px;
 
-   /* TRUNCAR O TEXTO */
+   /* TRUNCAR O TEXTO 
    text-overflow: ellipsis;
    white-space: nowrap;
    width: 100%;
    overflow: hidden;
+   */
 }
-
+.loop-cursos nav ul li small p{
+  font-weight: normal !important;
+  color: #fff !important;
+}
 
 
 
@@ -2057,6 +2062,54 @@ nav.destaque-cursos ul li small{
     background: #f9f9f9;
     padding: 20px;
 }
+
+
+
+.item-suporte-e-ajuda{
+  position: relative;
+  display: block;
+  padding-top: 16px;
+  padding-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 21px;
+  margin-top: 20px;
+}
+
+.item-suporte-e-ajuda h3{
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.progress {
+    display: -ms-flexbox;
+    display: flex;
+    height: 29px;
+    margin-top: 20px;
+    /* padding: 10px; */
+    overflow: hidden;
+    font-size: 0.75rem;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    /* height: 40px; */
+    padding: 12px;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #007bff;
+    transition: width 0.6s ease;
+}
+
+
 
 
 

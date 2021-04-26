@@ -166,6 +166,14 @@ $(document).ready(function() {
   });
 });
 
+// ABRIR URL`s EXTERNAS`
+function abrirUrl(url){
+
+  cordova.InAppBrowser.open(url, '_blank', 'location=yes,hidden=no,hardwareback=no');
+
+}
+
+
 
 
      // CODIGOS PARA UPLOAD DE ARQUIVOS LOCAIS
