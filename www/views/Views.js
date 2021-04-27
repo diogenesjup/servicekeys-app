@@ -1494,9 +1494,9 @@ class Views{
 
                 $("#feedbackAula").html(`
        
-                          <div class="alert alert-success" role="alert">
+                          <div class="alert alert-danger" role="alert">
                               <p>
-                                  <b>Oops! Você quase conseguiu. Sua nota foi ${totalAcertos}
+                                  <b style="color:#747474;">Oops! Você quase conseguiu. Sua nota foi ${totalAcertos}
                                   <small style="display:block;">O necessário para aprovação era ${nota_minima_para_aprovacao}</small> 
                                   </b>
                               </p>
