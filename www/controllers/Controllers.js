@@ -146,14 +146,46 @@ class App {
 
         }else{
 
-            this.views.viewPrincipalProfissional();
-            this.models.orcamentosDisponiveis();
-            localStorage.setItem("selecaoPerfil","profissional");
+            var dadosCompletosUsuario = JSON.parse(localStorage.getItem("dadosCompletosUsuario"));
+
+            if(dadosCompletosUsuario.categoria!=null || localStorage.getItem("categoria1")!=null){
+
+                    this.views.viewPrincipalProfissional();
+                    this.models.orcamentosDisponiveis();
+                    localStorage.setItem("selecaoPerfil","profissional");
+
+            }else{
+
+                aviso("Qual categoria de serviço você atua?","Para visualizar os orçamentos disponíveis nas nossa plataforma, você precisa informar qual categoria você atua. No próximo passo, você terá que informar esse dado.");
+                this.views.selecionarMinhasCategorias();
+
+            }
 
         }
 
     }
 
+    salvarMinhasCategorias(){
+
+            var categoria1 = $("#categoria_1").val();
+            var categoria2 = $("#categoria_2").val();
+
+            console.log("ESSAS SÃO AS MINHAS CATEGORIAS:");
+            console.log(categoria1);
+            console.log(categoria2);
+
+            localStorage.setItem("categoria1",categoria1);
+            localStorage.setItem("categoria2",categoria2);
+
+            this.models.salvarMinhasCategorias();
+
+            this.views.viewPrincipalProfissional();
+            this.models.orcamentosDisponiveis();
+
+            localStorage.setItem("selecaoPerfil","profissional");
+
+
+    }    
     opcoesCarretamentoPerfilCliente(){
 
         this.views.viewPrincipalCliente();
@@ -338,7 +370,13 @@ filtrotabela(){
 
 
 
-    desbloqAnuncio(anuncio,valorAnuncio){
+    desbloqAnuncio(anuncio,valorAnuncio,categoria){
+
+        var categoria1 = localStorage.getItem("categoria1");
+        var categoria2 = localStorage.getItem("categoria2");
+        console.log("ESSA É A CATEGORIA: "+categoria);
+
+        if(categoria1==categoria  || categoria2==categoria){
 
         var saldoUsuario = localStorage.getItem("saldoPrestadorServico");
         
@@ -354,6 +392,12 @@ filtrotabela(){
             confirmacao("Tem certeza que deseja desbloquear esse anúncio?",`Será debitado um valor de ${valorAnuncio} chaves do seu saldo <b>SERVICE KEYS</b>`,`app.views.viewDetalheAnuncio(${anuncio},5)`,"Desbloquear");
 
         }
+
+    }else{
+
+          aviso("Oops! Você não pode atender a esse orçamento","Suas categorias de atendimento não permitem atender a esse tipo de orçamento. Para alterar as suas categorias de atendimento, envie um e-mail para <b>suporte@servicekeys.com.br</b>");  
+
+    }
         
 
     }

@@ -16,7 +16,9 @@ class Models{
                   console.log("%c VERIFICAÇÃO DE DISPONIBILIDADE DE API","background:#ff0000;color:#fff;");
                   console.log(dados);
 
-                
+                  // SALVAR NA MEMÓRIA AS CATEGORIAS
+                  localStorage.setItem("herancaCategorias",JSON.stringify(dados.categorias));
+                  localStorage.setItem("categoiasAtendimento",JSON.stringify(dados.categorias));
 
               });
               request.fail(function (dados) {
@@ -183,8 +185,11 @@ class Models{
                   if(dados.sucesso=="200"){
                      
                      localStorage.setItem("dadosUsuario",dados.usuarios[0].data);
+
+                     localStorage.setItem("categoria1",dados.categoria);
+                     localStorage.setItem("categoria2",dados.categoria_2);
                      
-                     
+                     localStorage.setItem("dadosCompletosUsuario",JSON.stringify(dados));
 
                      localStorage.setItem("nomeUsuario",dados.nome);
 
@@ -213,6 +218,9 @@ class Models{
               // FINAL CHAMADA AJAX
 
     }
+
+
+
 
 
     // PROC CADASTRO
@@ -249,10 +257,13 @@ class Models{
                       localStorage.setItem("dadosUsuario",dadosUsuario);
                       localStorage.setItem("nomeUsuario",dados.nome);
                     
+                      localStorage.setItem("dadosCompletosUsuario",JSON.stringify(dados));
 
                       localStorage.setItem("nomeCompletoUsuario",dados.nome_completo);
                       localStorage.setItem("emailUsuario",dados.email);
                       localStorage.setItem("celularUsuario",dados.celular);
+
+                      localStorage.setItem("saldoPrestadorServico",dados.saldo_chaves);
   
                       // SE DEU TUDO CERTO, VAMOS LOGAR O USUÁRIO
                       app.login(dados.id,dados.email,dadosUsuario);
@@ -560,7 +571,8 @@ enviarAtendimento(){
         var emailUsuario = localStorage.getItem("emailUsuario");
         var celularUsuario = localStorage.getItem("celularUsuario");
 
-       
+        var nomeCategoriaAtendimento = localStorage.getItem("nomeCategoriaAtendimento");
+        var idCategoriaAtendimento = localStorage.getItem("idCategoriaAtendimento");
 
         // CONFIGURAÇÕES AJAX VANILLA
         let xhr = new XMLHttpRequest();
@@ -575,6 +587,8 @@ enviarAtendimento(){
                      '&emailUsuario='+emailUsuario+ 
                      '&celularUsuario='+celularUsuario+ 
                      '&dados='+dados+ 
+                     '&nomeCategoriaAtendimento='+nomeCategoriaAtendimento+ 
+                     '&idCategoriaAtendimento='+idCategoriaAtendimento+
                      "&token="+app.token;
         
         // INICIO AJAX VANILLA
@@ -638,6 +652,7 @@ orcamentosDisponiveis(){
             if(xhr.status == 200) {
 
               console.log("DADOS DOS ATENDIMENTOS EM ABERTO");
+              console.log(xhr.responseText);
               console.log(JSON.parse(xhr.responseText));
               
               var dados = JSON.parse(xhr.responseText);
@@ -658,7 +673,7 @@ orcamentosDisponiveis(){
                               return `
                                   
                                  <!-- CAIXA DESTAQUE SERVIÇOS -->
-                                 <div id="anuncio${n.id}" class="caixa-destaque-servicos">
+                                 <div id="anuncio${n.id}" class="caixa-destaque-servicos" data-categoria="${n.nome_categoria}">
                                    
                                      <div class="header-autor">
 
@@ -688,7 +703,7 @@ orcamentosDisponiveis(){
                                      </div>
 
                                      <div class="footer-autor">
-                                          <a href="javascript:void(0)" onclick="app.desbloqAnuncio(${n.id},${n.valor_chaves_para_desbloqueio});" title="DESBLOQUEAR" class="btn btn-primary">
+                                          <a href="javascript:void(0)" onclick="app.desbloqAnuncio(${n.id},${n.valor_chaves_para_desbloqueio},${n.nome_categoria});" title="DESBLOQUEAR" class="btn btn-primary">
                                               DESBLOQUEAR <span><img src="assets/images/simbolo.svg" /> ${n.valor_chaves_para_desbloqueio}</span>
                                           </a>
                                      </div>
@@ -1871,7 +1886,49 @@ atualizarHistoricoAluno(){
 }
 
 
+salvarMinhasCategorias(){
 
+    var idUsuario  = localStorage.getItem("idUsuario");
+    var categoria1 = localStorage.getItem("categoria1");
+    var categoria2 = localStorage.getItem("categoria2");
+
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('POST', app.urlApi+'salvar-minhas-categorias',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+ 
+                     "&token="+app.token+
+                     "&categoria1="+categoria1+
+                     "&categoria2="+categoria2;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("RETORNO SALVAR MINHAS CATEGORIAS");
+              console.log(JSON.parse(xhr.responseText));
+              
+            }else{
+              
+              console.log("SEM SUCESSO salvarMinhasCategorias()");
+              console.log(JSON.parse(xhr.responseText));
+              //aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+}
 
 
 

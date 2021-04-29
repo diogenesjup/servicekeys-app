@@ -129,6 +129,11 @@ class Views{
 
     novoAtendimento(idCategoria,nomeCategoria){
 
+       localStorage.setItem("nomeCategoriaAtendimento",nomeCategoria); 
+       localStorage.setItem("idCategoriaAtendimento",idCategoria);
+
+       console.log("NOME CATEGORIA: "+nomeCategoria);
+       console.log("ID CATEGORIA: "+idCategoria);
 
        this._content.html(`
             
@@ -286,6 +291,94 @@ class Views{
     }
 
 
+    selecionarMinhasCategorias(){
+       
+            var categorias = JSON.parse(localStorage.getItem("categoiasAtendimento"));
+            console.log(categorias);
+
+            $("footer").css("opacity",1);
+            $("section#content").css("height","calc(100% - 114px)");
+
+            $("header .menu-bar-toggle").html(`
+
+                 <a class="saldo-atual" href="javascript:void(0)" onclick="app.resumoSaldoProfissional()" title="Seu saldo">
+                    
+                    <img src="assets/images/saldo.svg" alt="Seu saldo atual" /> <span id="saldoAtualUsuarioHeader">${localStorage.getItem("saldoPrestadorServico")}</span>
+
+                 </a>
+                 
+                 <a href="javascript:void(0)" onclick="app.abrirFecharMenuProfissional();" title="Abrir o menu">
+                   <img src="assets/images/menu-bar.svg" alt="Abrir o menu">
+                 </a>
+
+            `);
+
+            this._content.html(`
+            
+               <div class="row view-dashboard view-profissional" view-name="view-dashboard" style="background:#fff !important;">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2>
+                       Selecione as suas categorias de atendimento<br>
+                       <small>Escolha uma categoria principal, e uma secundária:</small>
+                     </h2>
+
+                     <div class="loop-novos-servicos" id="listaDeOrcamentos">
+
+                            <form method="post" action="javascript:void(0)" onsubmit="app.salvarMinhasCategorias()">
+
+                                <div class="form-group">
+                                  <label>Categoria principal</label>
+                                  <select class="form-control" required name="categoria_1" id="categoria_1">
+                                     <option value="">selecione uma opção</option>
+                                     ${categorias.map((n) => {
+
+                                              return `
+                                                  
+                                                 <option value="${n.id}">${n.titulo} - ${n.descricao}</option>
+
+                                              `
+                                       }).join('')}
+                                  </select>
+                                </div>
+
+                                <div class="form-group">
+                                  <label>Categoria secundária (opcional)</label>
+                                  <select class="form-control" name="categoria_2" id="categoria_2">
+                                     <option value="">selecione uma opção (opcional)</option>
+                                     ${categorias.map((n) => {
+
+                                              return `
+                                                  
+                                                 <option value="${n.id}">${n.titulo} - ${n.descricao}</option>
+
+                                              `
+                                       }).join('')}
+                                  </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">
+                                        Atualizar informações
+                                    </button>
+                                </div>
+
+                            </form>
+
+                     </div>
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+            $("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+            $("header .menu-bar-toggle").fadeIn(500);
+
+    }
 
 
 
@@ -2037,6 +2130,8 @@ class Views{
 
     viewCadastro(){
 
+         var categorias = JSON.parse(localStorage.getItem("herancaCategorias"));
+
          this._content.html(`
             
                <div class="row view-login" view-name="view-login">
@@ -2058,6 +2153,7 @@ class Views{
                            <label>Sua senha</label>
                            <input type="password" id="cadastroSenha" class="form-control" placeholder="Sua senha de acesso" required />
                         </div>
+
                         <div class="form-group">
                            <button class="btn btn-primary" id="btnViewCadastro">
                               Cadastrar
