@@ -210,7 +210,7 @@ class Views{
                             </div>
 
                             <div class="form-group" style="margin-top:30px;">
-                              <button type="submit" class="btn btn-primary">Enviar informações</button>
+                              <button type="submit" id="btnEnviarSolicitacao" class="btn btn-primary">Enviar informações</button>
                             </div>
 
                             <div class="form-group">
@@ -237,6 +237,42 @@ class Views{
     }
 
 
+    minhasSolicitacoes(){
+
+      this._content.html(`
+            
+               <div class="row view-dashboard novo-atendimento" view-name="view-dashboard">
+                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                     
+                     <h2 id="fraseDeAbertura">
+                       <a href="javascript:void(0)" onclick="app.opcoesCarretamentoPerfilCliente();" title="Cancelar">
+                            <img src="assets/images/voltar-views.svg" alt="Cancelar" />
+                       </a>
+                       
+                       Solicitações de orçamento:
+                       <small>
+                       Abaixo as suas últimas solicitações de orçamento
+                       </small>
+                     </h2>
+
+                     <div class="loop-novos-servicos">
+                       <div id="minhasSolicitacoesContainer"></div>
+                     </div>
+
+                     <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+
+
+                  </div>
+               </div>
+            
+            `);
+
+            this.animarTransicao();
+
+    }
 
     viewPrincipalProfissional(){
 
@@ -754,7 +790,7 @@ class Views{
                                                           <div class="row">
                                                               <div class="col-12 form-group">
                                                                  <label>CPF do títular</label>
-                                                                 <input type="tel" id="pagtoCCNumeroCPF" name="pagtoCCNumeroCPF" class="form-control" placeholder="CPF do títular">
+                                                                 <input type="tel" id="pagtoCCNumeroCPF" required name="pagtoCCNumeroCPF" class="form-control" placeholder="CPF do títular">
                                                               </div>
                                                           </div>
                                                           

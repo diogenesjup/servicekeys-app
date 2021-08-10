@@ -610,6 +610,8 @@ enviarAtendimento(){
               console.log("SEM SUCESSO enviarAtendimento()");
               console.log(JSON.parse(xhr.responseText));
               aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+             
+              $("#btnEnviarSolicitacao").html("Enviar informações");
 
             }
 
@@ -1917,6 +1919,225 @@ salvarMinhasCategorias(){
             }else{
               
               console.log("SEM SUCESSO salvarMinhasCategorias()");
+              console.log(JSON.parse(xhr.responseText));
+              //aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+}
+
+
+minhasSolicitacoes(){
+
+        var idUsuario  = localStorage.getItem("idUsuario");
+        var emailUsuario = localStorage.getItem("emailUsuario");
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('POST', app.urlApi+'minhas-solicitacoes',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+ 
+                     '&emailUsuario='+emailUsuario+
+                     "&token="+app.token;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("RETORNO MINHAS SOLICITACOES");
+              console.log(JSON.parse(xhr.responseText));
+
+
+              var dados = JSON.parse(xhr.responseText);
+
+              $("#minhasSolicitacoesContainer").html(`
+
+                  ${dados.orcamentos.map((n) => {
+
+                          // ORCAMENTO NAO DESBLOQUEADO
+                          if(n.desblock=="nao"){
+
+                              return `
+                                  
+                                 <!-- CAIXA DESTAQUE SERVIÇOS -->
+                                 <div id="anuncio${n.id}" class="caixa-destaque-servicos" data-categoria="${n.nome_categoria}">
+                                   
+                                     <div class="header-autor">
+                                     </div>
+
+                                     <br clear="both">
+
+                                     <div class="body-autor">
+                                          <h4>${n.titulo_origin}</h4>
+                                          <p>Área de atendimento: ${n.regiao}</p>
+                                          <p>${n.descricao}</p>
+                                          <p>Data: ${n.data_criacao}</p>
+                                          <p><b>Requisitos:</b> ${n.requisitos}</p>
+                                          <p>Desbloqueado por algum profissional?<br> <b>Não</b></p>
+                                     </div>
+
+                                     <div class="footer-autor">
+                                          <a href="javascript:void(0)" onclick="app.cancelarAnuncio(${n.id});" title="CANCELAR" class="btn btn-warning">
+                                              CANCELAR SERVIÇO <i class="fa fa-ban"></i>
+                                          </a>
+                                          <p class="apoio-servico">
+                                            Caso precise editar alguma informação, você precisa criar uma nova solicitação de atendimento
+                                          </p>
+                                     </div>
+
+                                 </div>
+                                 <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+                              `
+
+                          }
+
+
+                          // ORCAMENTO DESDESBLOQUEADO
+                          if(n.desblock=="sim"){
+
+                              return `
+                                  
+                                 <!-- CAIXA DESTAQUE SERVIÇOS -->
+                                 <div id="anuncio${n.id}" class="caixa-destaque-servicos" data-categoria="${n.nome_categoria}">
+                                   
+                                     <div class="header-autor">
+                                     </div>
+
+                                     <br clear="both">
+
+                                     <div class="body-autor">
+                                          <h4>${n.titulo_origin}</h4>
+                                          <p>Área de atendimento: ${n.regiao}</p>
+                                          <p>${n.descricao}</p>
+                                          <p>Data: ${n.data_criacao}</p>
+                                          <p><b>Requisitos:</b> ${n.requisitos}</p>
+                                          <p>Desbloqueado por algum profissional?<br> <b style="color:#4CAF50">Sim</b></p>
+                                     </div>
+
+                                     <div class="footer-autor">
+                                          <a href="javascript:void(0)" onclick="app.fecharAnuncio(${n.id});" title="FECHAR SERVIÇO" class="btn btn-warning">
+                                              FECHAR SERVIÇO
+                                          </a>
+                                          <p class="apoio-servico">
+                                            Caso já tenha sido atendido ou não precise mais de novos orçamentos, o botão acima irá indicar aos profissionais que vocë não precisa mais do atendimento.
+                                          </p>
+                                          <p class="apoio-servico">
+                                            Caso precise editar alguma informação, você precisa criar uma nova solicitação de atendimento
+                                          </p>
+                                     </div>
+
+                                 </div>
+                                 <!-- CAIXA DESTAQUE SERVIÇOS -->
+
+                              `
+
+                          }
+
+
+                       }).join('')}
+
+              `);
+
+
+              
+            }else{
+              
+              console.log("SEM SUCESSO minhasSolicitacoes()");
+              console.log(JSON.parse(xhr.responseText));
+              //aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+  
+
+}
+
+removerSolicitacaoOrcamento(idAnuncio){
+
+  // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('POST', app.urlApi+'remover-anuncio',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idAnuncio='+idAnuncio+
+                     "&token="+app.token;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("RETORNO REMOVER ANUNCIO");
+              console.log(JSON.parse(xhr.responseText));
+
+              fecharAviso();
+              aviso("Deu certo!","Sua solicitação foi removida com sucesso! Aproveite e publique novos orçamentos para continuar contando com os profissionais da nossa plataforma!");
+              
+            }else{
+              
+              console.log("SEM SUCESSO removerSolicitacaoOrcamento()");
+              console.log(JSON.parse(xhr.responseText));
+              //aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+
+
+}
+
+fecharSolicitacaoOrcamento(idAnuncio){
+  
+         // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('POST', app.urlApi+'fechar-anuncio',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idAnuncio='+idAnuncio+
+                     "&token="+app.token;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("RETORNO FECHAR ANUNCIO");
+              console.log(JSON.parse(xhr.responseText));
+
+              fecharAviso();
+              aviso("Deu certo!","Sua solicitação foi fechada com sucesso! Aproveite e publique novos orçamentos para continuar contando com os profissionais da nossa plataforma!");
+              
+            }else{
+              
+              console.log("SEM SUCESSO fecharSolicitacaoOrcamento()");
               console.log(JSON.parse(xhr.responseText));
               //aviso("Oops! Algo deu errado.","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
 

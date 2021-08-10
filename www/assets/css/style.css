@@ -2110,7 +2110,24 @@ nav.destaque-cursos ul li small{
 }
 
 
+.btn-warning,
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning:focus,
+.btn-warning:visited {
+    color: #212529 !important;
+    background-color: #ccc !important;
+    border-color: #666 !important;
+    background: #ccc !important;
+    font-size: 14px !important;
+    opacity: 0.8 !important;
+}
 
+p.apoio-servico{
+  font-size: 12px;
+  line-height: 18px;
+  padding-top: 20px;
+}
 
 
 

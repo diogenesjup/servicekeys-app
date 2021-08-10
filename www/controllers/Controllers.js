@@ -156,7 +156,7 @@ class App {
 
             }else{
 
-                aviso("Qual categoria de serviço você atua?","Para visualizar os orçamentos disponíveis nas nossa plataforma, você precisa informar qual categoria você atua. No próximo passo, você terá que informar esse dado.");
+                aviso("Qual categoria de serviço você atua?","Para visualizar os orçamentos disponíveis na nossa plataforma, você precisa informar qual categoria você atua. No próximo passo, você terá que informar esse dado.");
                 this.views.selecionarMinhasCategorias();
 
             }
@@ -281,10 +281,55 @@ class App {
 
     enviarAtendimento(){
 
+        $("#btnEnviarSolicitacao").html("enviando... aguarde");
+
         this.models.enviarAtendimento();
 
     }
 
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   SOLICITAÇÕES DO CLIENTE
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+minhasSolicitacoes(){
+
+    this.views.minhasSolicitacoes();
+    this.models.minhasSolicitacoes();
+
+}
+cancelarAnuncio(idAnuncio){
+    
+    confirmacao("Tem certeza que deseja cancelar essa solicitação?","Sua solicitação de orçamento será apagada e não receberá mais propostas dos profissionais.",`app.confirmarCancelamento(${idAnuncio})`,"Sim, remover");
+
+}
+confirmarCancelamento(idAnuncio){
+   
+    aviso("Processando...","Aguarde, estamos removendo a sua solicitação de orçamento.");
+    console.log("REMOVER SOLICITAÇÃO: "+idAnuncio);
+
+    this.models.removerSolicitacaoOrcamento(idAnuncio);
+
+}
+
+fecharAnuncio(idAnuncio){
+
+    confirmacao("Tem certeza que deseja encerrar essa solicitação?","Sua solicitação de orçamento será encerrada e não receberá mais orçamentos.",`app.confirmarFechamento(${idAnuncio})`,"Sim, fechar");
+
+}
+confirmarFechamento(idAnuncio){
+
+    aviso("Processando...","Aguarde, estamos fechando a sua solicitação de orçamento.");
+    console.log("FECHANDO SOLICITAÇÃO: "+idAnuncio);
+
+    this.models.fecharSolicitacaoOrcamento(idAnuncio);
+
+}
 
     
 /**
