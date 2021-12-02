@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.diogenesjunior.servicekeys"
-        version   = "1.5.0">
+        version   = "1.6.3">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -59,7 +59,7 @@
 
     
    <preference name="android-minSdkVersion" value="23" />
-   <preference name="android-targetSdkVersion" value="29" />
+   <preference name="android-targetSdkVersion" value="30" />
    
     <!-- Plugins -->
 
