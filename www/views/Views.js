@@ -73,7 +73,7 @@ class Views{
     viewPrincipalCliente(){
 
             $("footer").css("opacity",0);
-            $("section#content").css("height","calc(100% - 100px)");
+            $("section#content").css("height","calc(100% - 90px)");
 
             $("header .menu-bar-toggle").html(`
                  
@@ -277,7 +277,7 @@ class Views{
     viewPrincipalProfissional(){
 
             $("footer").css("opacity",1);
-            $("section#content").css("height","calc(100% - 154px)");
+            $("section#content").css("height","calc(100% - 144px)");
 
             $("header .menu-bar-toggle").html(`
 
@@ -333,7 +333,7 @@ class Views{
             console.log(categorias);
 
             $("footer").css("opacity",1);
-            $("section#content").css("height","calc(100% - 154px)");
+            $("section#content").css("height","calc(100% - 144px)");
 
             $("header .menu-bar-toggle").html(`
 
@@ -423,7 +423,7 @@ class Views{
     servicosDesbloqueadosProfissional(){
 
             $("footer").css("opacity",1);
-            $("section#content").css("height","calc(100% - 154px)");
+            $("section#content").css("height","calc(100% - 144px)");
 
             $("header .menu-bar-toggle").html(`
 
@@ -479,7 +479,7 @@ class Views{
     alertasProfissionais(){
 
             $("footer").css("opacity",1);
-            $("section#content").css("height","calc(100% - 154px)");
+            $("section#content").css("height","calc(100% - 144px)");
 
             $("header .menu-bar-toggle").html(`
 

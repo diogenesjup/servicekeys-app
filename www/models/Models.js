@@ -699,7 +699,7 @@ orcamentosDisponiveis(){
                                      <br clear="both">
 
                                      <div class="body-autor">
-                                          <h4>${n.titulo_origin}</h4>
+                                          <!--<h4>${n.titulo}</h4>-->
                                           <p>${n.descricao}</p>
                                           <p><b>Requisitos:</b> ${n.requisitos}</p>
                                      </div>
@@ -808,7 +808,7 @@ orcamentosDisponiveisDesbloqueados(){
                                      <br clear="both">
 
                                      <div class="body-autor">
-                                          <h4>${n.titulo_origin}</h4>
+                                          <h4>${n.titulo}</h4>
                                           <p>${n.descricao}</p>
                                           <p><b>Requisitos:</b> ${n.requisitos}</p>
                                           <p>
@@ -904,7 +904,7 @@ carregarDetalheAtendimento(idAnuncio,acao){
               $("#contatoTelefone").html(`${dados.orcamentos[0].celular}`);
               $("#contatoEmail").html(`${dados.orcamentos[0].e_mail}`);
 
-              $(".body-autor h4").html(`${dados.orcamentos[0].titulo_origin}`);
+              $(".body-autor h4").html(`${dados.orcamentos[0].titulo}`);
 
               $("#actionLigacao").attr("href",`tel:${dados.orcamentos[0].celular}`);
               $("#actionWhatsApp").attr("onclick",`abrirUrl('https://api.whatsapp.com/send?l=pt_BR&phone=55${dados.orcamentos[0].celular}'`);
