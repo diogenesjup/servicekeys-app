@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/diogenesjup/servicekeys-app/issues"
   },
-  "homepage": "https://github.com/diogenesjup/servicekeys-app#readme"
+  "homepage": "https://github.com/diogenesjup/servicekeys-app#readme",
+  "dependencies": {
+    "composer": "^4.1.0"
+  }
 }

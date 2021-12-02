@@ -1965,6 +1965,12 @@ minhasSolicitacoes(){
 
                   ${dados.orcamentos.map((n) => {
 
+                          if(n.titulo_origin==null || n.titulo_origin=="" || n.titulo_origin==undefined){
+                          
+                            n.titulo_origin = n.titulo;
+                          
+                          }
+
                           // ORCAMENTO NAO DESBLOQUEADO
                           if(n.desblock=="nao"){
 

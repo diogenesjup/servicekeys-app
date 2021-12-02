@@ -614,7 +614,9 @@ section#content .view-3{
 
 .loop-novos-servicos .caixa-destaque-servicos .body-autor h4{
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 20px;
 }
 
 .loop-novos-servicos .caixa-destaque-servicos .body-autor p{

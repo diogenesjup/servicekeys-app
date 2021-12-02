@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.diogenesjunior.servicekeys"
-        version   = "1.5.0">
+        version   = "1.6.0">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -14,7 +14,7 @@
         Service Keys - Contrate profissionais qualificados perto de você
     </description>
 
-    <author href="http://www.servicekeys.com.br/" email="falecom@servicekeys.com.br">
+    <author href="http://www.servicekeys.com.br/" email="diogenesjunior.ti@gmail.com">
         Service Keys Tecnologia
     </author>
  
