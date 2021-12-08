@@ -2045,6 +2045,8 @@ class Views{
                        </div>
                      -->
 
+                     <p style="font-size:12px;padding-top:50px;">A plataforma <b>SERVICEKEYS</b> utiliza seus dados como e-mail e número de celular, apenas para fins internos, não o compartilhando de forma pública com terceiros não autorizados</p>
+
                   </div>
                </div>
             
