@@ -133,9 +133,18 @@ class App {
 
     
 
-    selecaoPerfil(){
 
-        event.preventDefault();
+
+    // SELECIONAR O TIPO DE PERFIL
+    selecaoPerfil(event){
+
+    
+        try {
+           event.preventDefault();
+        }
+        catch (e) {
+           console.log("TIVEMOS UM PROBLEMA");
+        }
 
         var tipoPerfil = $('input[name=tipoPerfil]:checked').val();
 
@@ -164,6 +173,11 @@ class App {
         }
 
     }
+
+
+
+
+
 
     salvarMinhasCategorias(){
 
