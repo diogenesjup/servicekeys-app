@@ -20,6 +20,16 @@ class Models{
                   localStorage.setItem("herancaCategorias",JSON.stringify(dados.categorias));
                   localStorage.setItem("categoiasAtendimento",JSON.stringify(dados.categorias));
 
+                  if(dados.endpoint=="https://servicekeys.com.br/apiservicekeys/testeapi/"){
+                  
+                    localStorage.setItem("apple","nao");
+                  
+                  }else{
+                    
+                    localStorage.setItem("apple","sim");
+
+                  }
+
               });
               request.fail(function (dados) {
                      

@@ -20,44 +20,54 @@ class Views{
 
     viewPrincipal(){
 
-            this._content.html(`
+            if(localStorage.getItem("appple")=="sim"){
+
+                this._content.html(`
             
-               <div class="row view-inicial inicial" view-name="view-dashboard">
-                  <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
-                     
-                     <h2>
-                      Qual tipo de perfil você deseja acessar?
-                     </h2>
+                   <div class="row view-inicial inicial" view-name="view-dashboard">
+                      <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                         
+                         <h2>
+                          Qual tipo de perfil você deseja acessar?
+                         </h2>
 
-                     <form method="post" action="javascript:void(0)" onsubmit="app.selecaoPerfil(event)">
+                         <form method="post" action="javascript:void(0)" onsubmit="app.selecaoPerfil(event)">
 
-                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoCliente" value="cliente" checked>
-                              <label class="form-check-label" for="tipoServicoCliente">
-                                <img src="assets/images/profile.svg" alt="Encontrar profissionais" /> Encontrar profissionais
-                              </label>
-                           </div>
+                               <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoCliente" value="cliente" checked>
+                                  <label class="form-check-label" for="tipoServicoCliente">
+                                    <img src="assets/images/profile.svg" alt="Encontrar profissionais" /> Encontrar profissionais
+                                  </label>
+                               </div>
 
-                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoPro" value="profissionais">
-                              <label class="form-check-label" for="tipoServicoPro">
-                                <img src="assets/images/simbolo.svg" alt="Encontrar profissionais" />  Cadastrar meus serviços
-                              </label>
-                           </div>
-                           
-                           <div class="form-group">
-                              <button typw="submit" class="btn btn-primary">
-                                  Escolher esse perfil
-                              </button> 
-                           </div>
+                               <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoPro" value="profissionais">
+                                  <label class="form-check-label" for="tipoServicoPro">
+                                    <img src="assets/images/simbolo.svg" alt="Encontrar profissionais" />  Cadastrar meus serviços
+                                  </label>
+                               </div>
+                               
+                               <div class="form-group">
+                                  <button typw="submit" class="btn btn-primary">
+                                      Escolher esse perfil
+                                  </button> 
+                               </div>
 
-                     </form>
+                         </form>
 
 
-                  </div>
-               </div>
+                      </div>
+                   </div>
+                
+                `);
+
+            }else{
+
+                app.opcoesCarretamentoPerfilCliente();
+                localStorage.setItem("selecaoPerfil","cliente");
+
+            }
             
-            `);
 
             this.animarTransicao();
 
