@@ -128,6 +128,7 @@
 // FORMULARIO FLUTUANTE onclick="ativarFormularioFlutuante('','')"
 function ativarFormularioFlutuante(campoParaPreenchimento,labelPreenchimento){
 
+   /*
    $(".input-flutuante-acessibilidade").fadeIn(500);
    //$(".barra-navegacao").hide(0);
 
@@ -137,11 +138,13 @@ function ativarFormularioFlutuante(campoParaPreenchimento,labelPreenchimento){
 
    $("#fieldInputFlutuante").focus();
    $('.input-flutuante-acessibilidade label').html(labelPreenchimento);
+   */
+   console.log("DISABLED");
 
 }
 
 function validarFormularioFlutuante(event){
-
+    /*
     event.preventDefault();
 
     var fieldInputFlutuante = $("#fieldInputFlutuante").val();
@@ -150,11 +153,12 @@ function validarFormularioFlutuante(event){
     //$(".barra-navegacao").show(0);
 
     $(localStorage.getItem("campoParaPreenchimento")).val(fieldInputFlutuante);
+    */
 
 }
 
 // GARANTIR O FECHAMENTO DO CAMPO QUANDO A TELA VOLTAR AO NORMAL
-
+/*
 $(document).ready(function() {
   var _originalSize = $(window).width() + $(window).height()
   $(window).resize(function() {
@@ -165,7 +169,7 @@ $(document).ready(function() {
     }
   });
 });
-
+*/
 // ABRIR URL`s EXTERNAS`
 function abrirUrl(url){
 

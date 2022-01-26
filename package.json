@@ -1,6 +1,6 @@
 {
   "name": "com.diogenesjunior.servicekeys",
-  "version": "1.7.0",
+  "version": "1.7.2",
   "description": "Serivce Keys",
   "main": "index.html",
   "scripts": {
