@@ -1760,7 +1760,7 @@ class Views{
                                          <i class="fa fa-twitter"></i>
                                       </a>
 
-                                      <a href="javascript:void(0)" onclick="abrirUrl('https://wa.me/?text=Conheça o aplicativo Service Keys https://servicekeys.com.br')" title="Compartilhar por WhatsApp">
+                                      <a href="javascript:void(0)" onclick="abrirUrl('https://api.whatsapp.com/send?l=pt_BR&text=Conheça o aplicativo Service Keys https://servicekeys.com.br')" title="Compartilhar por WhatsApp">
                                          <i class="fa fa-whatsapp"></i>
                                       </a>
 
