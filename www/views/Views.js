@@ -1803,7 +1803,7 @@ class Views{
                                     e ganhe chaves para desbloquear orçamentos!
                                   </p>
                                   <p>
-                                    Se as pessoas que você indicou, se cadastrarem, você ganha na hora até 100 chaves!!
+                                    Se as pessoas que você indicou, se cadastrarem, você pode ganhar até 100 chaves!
                                   </p>
 
                                   <div class="social">
@@ -1812,12 +1812,16 @@ class Views{
                                          <i class="fa fa-twitter"></i>
                                       </a>
 
-                                      <a href="javascript:void(0)" onclick="abrirUrl('https://api.whatsapp.com/send?l=pt_BR&text=Conheça o aplicativo Service Keys https://servicekeys.com.br')" title="Compartilhar por WhatsApp">
+                                      <a href="https://api.whatsapp.com/send?l=pt_BR&text=Conheça o aplicativo Service Keys https://servicekeys.com.br" target="_system" title="Compartilhar por WhatsApp">
                                          <i class="fa fa-whatsapp"></i>
                                       </a>
 
                                       <a href="javascript:void(0)" onclick="abrirUrl('https://www.facebook.com/sharer/sharer.php?u=https://servicekeys.com.br')" title="Compartilhar no Facebook">
                                          <i class="fa fa-facebook"></i>
+                                      </a>
+
+                                      <a href="javascript:void(0)" onclick="compartilharExterno();" title="Compartilhar em outro local">
+                                         <i class="fa fa-share"></i>
                                       </a>
 
                                   </div>
