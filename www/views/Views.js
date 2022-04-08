@@ -17,6 +17,58 @@ class Views{
 	animarTransicao(){
 		new WOW().init();
 	}  
+    
+    selecaoDePerfilNova(){
+
+         this._content.html(`
+            
+                   <div class="row view-inicial inicial" view-name="view-dashboard">
+                      <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                         
+                         <h2>
+                          Qual tipo de perfil você deseja acessar?
+                         </h2>
+
+                         <form method="post" action="javascript:void(0)" onsubmit="app.selecaoPerfil(event)">
+
+                               <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoCliente" value="cliente" checked>
+                                  <label class="form-check-label" for="tipoServicoCliente">
+                                    <img src="assets/images/profile.svg" alt="Encontrar profissionais" /> Encontrar profissionais
+                                  </label>
+                               </div>
+
+                               <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="tipoPerfil" id="tipoServicoPro" value="profissionais">
+                                  <label class="form-check-label" for="tipoServicoPro">
+                                    <img src="assets/images/simbolo.svg" alt="Encontrar profissionais" />  Cadastrar meus serviços
+                                  </label>
+                               </div>
+                               
+                               <div class="form-group">
+                                  <button typw="submit" class="btn btn-primary">
+                                      Escolher esse perfil
+                                  </button> 
+                               </div>
+
+                         </form>
+
+
+                      </div>
+                   </div>
+                
+                `);
+
+          this.animarTransicao();
+
+          //$("footer").fadeIn(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
+          //$("header .menu-bar-toggle").fadeIn(500);
+
+          $("footer").fadeOut();
+
+
+    }
+
 
     viewPrincipal(){
 
